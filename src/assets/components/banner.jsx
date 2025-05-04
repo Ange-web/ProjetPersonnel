@@ -1,10 +1,10 @@
-
+imp
 
 function banner(){
     return(
         <header className="logonav">
             <div className="logo">
-                <img src={}/>
+                <img src={"#"}/>
             </div>
             <div className="navbar">
                 <div className="nav">

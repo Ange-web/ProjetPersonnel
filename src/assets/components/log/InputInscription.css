@@ -1,0 +1,77 @@
+.inscription-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  .inscription-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-title {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .input-group input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: border-color 0.3s;
+  }
+  
+  .input-group input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .inscription-actions {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .inscription-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .inscription-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .already-account {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .link-connexion {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .link-connexion:hover {
+    text-decoration: underline;
+  }
+  
