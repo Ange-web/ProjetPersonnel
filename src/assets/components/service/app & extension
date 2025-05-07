@@ -1,0 +1,27 @@
+securité du navigateur
+securité api    
+ Construire ton propre scanner (avec des outils ciblés)
+
+    Pour plus de contrôle, ou si tu veux te distinguer
+
+📌 Tu peux combiner :
+
+    Nmap → ports ouverts, services
+
+    WhatWeb ou Wappalyzer → tech stack, version CMS
+
+    Nuclei → templates de vulnérabilités (très rapide et personnalisable)
+
+    SQLMap → injection SQL
+
+    XSStrike → XSS
+
+    Nikto → failles courantes Apache/PHP
+
+Ensuite tu parses les résultats et tu les rends lisibles :
+
+    Score de risque
+
+    Vulnérabilités trouvées (avec description)
+
+    Recommandation

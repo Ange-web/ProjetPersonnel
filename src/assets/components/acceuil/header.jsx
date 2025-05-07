@@ -10,8 +10,8 @@ const Header = () => (
       <img src={logo} alt="Logo NSPY" className='logo-img' />
     </div>
     <nav className="nav">
-      <Link to="/"><a href="#">Accueil</a></Link>
-      <a href="#">Services</a>
+      <Link to="/">Accueil</Link>
+      <Link to="/scan">Services</Link>
       <a href="#">Contact</a>
       <a href="#">À propos</a>
     </nav>
