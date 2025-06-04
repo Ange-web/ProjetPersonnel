@@ -1,0 +1,40 @@
+/* IpPage.css */
+
+.ip-page {
+    min-height: 40vh;
+    background-color: #f3f4f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+  }
+  
+  .ip-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+  }
+  
+  .ip-address {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #2563eb;
+    margin-top: 1rem;
+  }
+  
+  .ip-error {
+    color: #dc2626;
+    font-weight: 500;
+    margin-top: 1rem;
+  }
+  
+  .ip-loading {
+    font-style: italic;
+    color: #334155;
+    margin-top: 1rem;
+  }
+  

@@ -1,22 +1,94 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
-import logo from '../../images/logo.png'
+import logo from '../../images/logo.png';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+//import ProfilForm from '../profil/ProfilForm'; // ton composant séparé
 
-const Header = () => (
-  <header className="header">
-    <div className="logo">
-      <img src={logo} alt="Logo NSPY" className='logo-img' />
-    </div>
-    <nav className="nav">
-      <Link to="/">Accueil</Link>
-      <Link to="/scan">Services</Link>
-      <a href="#">Contact</a>
-      <a href="#">À propos</a>
-    </nav>
-      <Link to="/Login"><button className="btn-primary">Connexion</button></Link>
-  </header>
-);
+const Header = () => {
+  const [user, setUser] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
+  // Récupère l'utilisateur connecté depuis localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+  
+    if (storedUser && storedUser !== "undefined") {
+      try {
+        const parsed = JSON.parse(storedUser);
+        setUser(parsed);
+      } catch (err) {
+        console.error("Erreur JSON.parse sur user:", err);
+        localStorage.removeItem("user"); // nettoyage si corrompu
+      }
+    }
+  }, []);
+  
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    setShowModal(false);
+    navigate('/login');
+  };
+
+  // Permet au formulaire ProfilForm de mettre à jour le Header
+  const handleProfileUpdate = (updatedUser) => {
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+    setUser(updatedUser);
+    setShowModal(false);
+  };
+
+  return (
+    <>
+      <header className="header">
+        <div className="logo">
+          <img src={logo} alt="Logo NSPY" className='logo-img' />
+        </div>
+
+        <nav className="nav">
+          <Link to="/">Accueil</Link>
+          <Link to="/servicehome">Services</Link>
+          <a href="#">Contact</a>
+          <a href="#">À propos</a>
+        </nav>
+
+        {/* Si utilisateur connecté */}
+        {user ? (
+          <div
+            className="user-info"
+            onMouseEnter={() => setShowPopup(true)}
+            onMouseLeave={() => setShowPopup(false)}
+          >
+            
+            <span className="username">{user.username}</span>
+
+            {showPopup && (
+              <div className="profile-popup" onClick={() => setShowModal(true)}>
+                Profil
+              </div>
+            )}
+          </div>
+        ) : (
+          <Link to="/login">
+            <button className="btn-primary">Connexion</button>
+          </Link>
+        )}
+      </header>
+
+      {/* Modale du formulaire de profil */}
+      {showModal && (
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+            <ProfilForm user={user} onUpdate={handleProfileUpdate} onLogout={handleLogout} />
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 export default Header;

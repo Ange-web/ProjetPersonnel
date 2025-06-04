@@ -1,77 +1,110 @@
 .inscription-container {
-    max-width: 400px;
-    margin: 40px auto;
-    padding: 20px;
-    border-radius: 12px;
-    background-color: #f5f5f5;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #e0e7ff, #f9fafb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.inscription-box {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1.2rem;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.inscription-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.inscription-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-title {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #374151;
+}
+
+.input-group input {
+  padding: 0.7rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+.inscription-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.inscription-button {
+  background-color: #2563eb;
+  color: white;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.inscription-button:hover {
+  background-color: #1d4ed8;
+}
+
+.already-account {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.link-connexion {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.link-connexion:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  
-  .inscription-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .input-group {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .input-title {
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 14px;
-    color: #333;
-  }
-  
-  .input-group input {
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    transition: border-color 0.3s;
-  }
-  
-  .input-group input:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  .inscription-actions {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .inscription-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .inscription-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .already-account {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #555;
-  }
-  
-  .link-connexion {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .link-connexion:hover {
-    text-decoration: underline;
-  }
-  
+}
