@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../acceuil/header';
-import Home from '../acceuil/home';
-import ServicesSection from '../acceuil/ServicesSection';
+import Header from './header';
+import Home from './home';
+import ServicesSection from './ServicesSection';
 import './style.css';
 
 
