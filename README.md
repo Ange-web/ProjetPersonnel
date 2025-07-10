@@ -17,13 +17,10 @@ npm install
 
 ## Author
 
-👤 **ange**
+👤 ange
 
 * Github: [@ange-web](https://github.com/ange-web)
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
