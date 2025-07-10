@@ -1,13 +1,29 @@
-# React + Vite
+<h1 align="center">Welcome to NSPY 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1-blue.svg?cacheSeconds=2592000" />
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> NSPY est une plateforme web légère dédiée à la détection de vulnérabilités, conçue pour simplifier l’analyse de sécurité d’un site web. Elle permet aux utilisateurs, même non techniques, de :
 
-Currently, two official plugins are available:
+### 🏠 [Homepage](Scanner des URL à la recherche de vulnérabilités courantes (XSS, SQLi, misconfig))
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### ✨ [Demo](Identifier les sous-domaines exposés)
 
-## Expanding the ESLint configuration
+## Install
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# ProjetPersonnel
+```sh
+npm install
+```
+
+## Author
+
+👤 **ange**
+
+* Github: [@ange-web](https://github.com/ange-web)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
