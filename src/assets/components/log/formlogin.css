@@ -1,0 +1,110 @@
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #0a0f1c;
+    gap: 60px;
+    padding: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .connexion-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-title {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  .connexion-button {
+    width: 100%;
+    padding: 12px;
+    background: #00bfff;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .connexion-button:hover {
+    background: #009acf;
+  }
+  
+  /* Cadenas animation */
+  .cadenas-anim {
+    position: relative;
+    width: 100px;
+    height: 160px;
+  }
+  
+  .shackle {
+    position: absolute;
+    top: 0;
+    left: 25px;
+    width: 50px;
+    height: 60px;
+    border: 8px solid #00bfff;
+    border-bottom: none;
+    border-radius: 30px 30px 0 0;
+    animation: unlock 2s infinite alternate;
+  }
+  
+  .lock {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    background: #00bfff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00bfff;
+  }
+  
+  .keyhole {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 40px;
+    background: #0a0f1c;
+    border-radius: 8px;
+  }
+  
+  .keyhole::after {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    background: #0a0f1c;
+    border-radius: 50%;
+  }
+  
+  @keyframes unlock {
+    0% { transform: rotate(0deg) translateY(0); }
+    100% { transform: rotate(-25deg) translateY(-5px); }
+  }
+  
