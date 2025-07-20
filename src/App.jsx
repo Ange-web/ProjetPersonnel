@@ -7,6 +7,7 @@ import Servicehome from './assets/components/service/service-home';
 import ScanPage from './assets/components/service/urlscan';
 import IpPage from './assets/components/service/ipscan';
 import PortScanPage from './assets/components/service/portscan';
+import ExifPage from './assets/components/service/exifpage'
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,12 @@ const router = createBrowserRouter([
   {
     path:'/scanport',
     element: <PortScanPage/>
-  }
+  },
+  {
+    path: '/scanexif',  
+    element: <ExifPage/>
+  },
+
 ]);
 
 const App = () => {
