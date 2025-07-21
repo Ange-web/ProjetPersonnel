@@ -1,16 +1,19 @@
-// ExifPage.jsx
 import React, { useState } from "react";
 import axios from "axios";
+import Header from "../acceuil/header";
 
 function ExifPage() {
   const [file, setFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState("");
   const [metadata, setMetadata] = useState(null);
   const [tag, setTag] = useState("");
   const [value, setValue] = useState("");
   const [filename, setFilename] = useState("");
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    setPreviewUrl(URL.createObjectURL(selectedFile));
   };
 
   const handleUpload = async (e) => {
@@ -19,40 +22,44 @@ function ExifPage() {
     formData.append("image", file);
 
     try {
-      const res = await axios.post("http://localhost:3000/read", formData);
+      const res = await axios.post("http://localhost:3000/scan/exif/read", formData);
       setMetadata(res.data.metadata);
       setFilename(res.data.file);
     } catch (err) {
-      alert("Erreur lors de l'upload");
+      console.error(err);
+      alert("❌ Erreur lors de l'upload");
     }
   };
 
   const handleEdit = async () => {
     try {
-      await axios.post("http://localhost:3000/edit", {
+      await axios.post("http://localhost:3000/scan/exif/edit", {
         file: filename,
         tag,
         value,
       });
-      alert("Métadonnée modifiée");
+      alert("✅ Métadonnée modifiée");
     } catch (err) {
-      alert("Erreur modification");
+      console.error(err);
+      alert("❌ Erreur lors de la modification");
     }
   };
 
   const handleDelete = async () => {
     try {
-      await axios.post("http://localhost:3000/delete", {
+      await axios.post("http://localhost:3000/scan/exif/delete", {
         file: filename,
       });
-      alert("Métadonnées supprimées");
+      alert("✅ Métadonnées supprimées");
     } catch (err) {
-      alert("Erreur suppression");
+      console.error(err);
+      alert("❌ Erreur lors de la suppression");
     }
   };
 
   return (
     <div className="p-4 max-w-2xl mx-auto">
+      <Header/>
       <h1 className="text-2xl font-bold mb-4">Éditeur de Métadonnées</h1>
 
       <form onSubmit={handleUpload} className="mb-4">
@@ -61,6 +68,12 @@ function ExifPage() {
           Lire Métadonnées
         </button>
       </form>
+
+      {previewUrl && (
+        <div className="mb-4">
+          <img src={previewUrl} alt="preview" className="max-w-full h-auto rounded shadow" />
+        </div>
+      )}
 
       {metadata && (
         <div>

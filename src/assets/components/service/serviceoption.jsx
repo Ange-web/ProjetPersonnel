@@ -23,6 +23,12 @@ const Serviceoption = () => {
        buttonLabel="Voir mon IP"
       redirectPath="/scanip"
       />
+      <ServiceCard
+      title="scan image"
+      description="afficher les metadonnés des images "
+      buttonLabel="scan image"
+      redirectPath="/scanexif"
+      />
 
     </div>
   );
