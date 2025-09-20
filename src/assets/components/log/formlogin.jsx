@@ -9,7 +9,7 @@ function InputLogin(){
 
     const handlelogin = async() =>{
         try{
-            const response = await fetch(`/api/login`,{
+            const response = await fetch(`http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/user/login`,{
                 method: "POST",
                 headers:{
                     "Content-Type": "application/json"

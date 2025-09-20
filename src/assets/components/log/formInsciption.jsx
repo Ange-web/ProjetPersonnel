@@ -12,7 +12,7 @@ function InputInscription() {
 
     const handleSignup = async () => {
         try {
-            const response = await fetch(`/api/signup`, {
+            const response = await fetch(`http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/new/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
