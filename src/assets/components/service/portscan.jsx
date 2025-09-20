@@ -26,7 +26,7 @@ const PortScanPage = () => {
     try {
       const token= localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:3000/scan/port", {
+      const response = await fetch("http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/scan/port", {
         method: "POST",
         headers: { "Content-Type": "application/json" ,
         Authorization: `Bearer ${token}`},

@@ -10,7 +10,7 @@ const IpPage = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:3000/scan/ip",{
+    fetch("http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/scan/ip",{
       method: "GET",
       headers: {
       "Content-Type": "application/json",

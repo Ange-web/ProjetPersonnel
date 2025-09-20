@@ -19,11 +19,9 @@ const ScanPage = () => {
     try {
       const token= localStorage.getItem("token");
 
-      const response = await fetch('http://localhost:3000/scan/url', {
+      const response = await fetch('http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/scan/url', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json',
-          "Authorization": `Bearer ${token}`
-         },
+        headers: { 'Content-Type': 'application/json', "Authorization": `Bearer ${token}` },
         body: JSON.stringify({ url })
       });
 
@@ -46,11 +44,10 @@ const ScanPage = () => {
     setIaExplanation('Chargement de l’explication IA...');
     try {
       const prompt = `Explique les vulnérabilités suivantes de façon simple pour un utilisateur débutant :\n\n${JSON.stringify(results, null, 2)}`;
-      const response = await fetch('http://localhost:3000/scan/chat', {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/scan/chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-         },
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ message: prompt })
       });
 

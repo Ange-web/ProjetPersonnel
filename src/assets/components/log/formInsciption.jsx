@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./InputInscription.css";
 
 function InputInscription() {
@@ -8,10 +8,11 @@ function InputInscription() {
     const [password, setPassword] = useState("");
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
+    const navigate = useNavigate();
 
     const handleSignup = async () => {
         try {
-            const response = await fetch("http://localhost:3000/new/signup", {
+            const response = await fetch("http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/new/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -20,9 +21,18 @@ function InputInscription() {
             });
 
             const data = await response.json();
-            console.log("Inscription réussie :", data);
+            
+            if (response.ok) {
+                console.log("Inscription réussie :", data);
+                // Rediriger vers la page de connexion après une inscription réussie
+                navigate("/login");
+            } else {
+                console.error("Erreur lors de l'inscription :", data);
+                // Vous pouvez ajouter ici un message d'erreur pour l'utilisateur
+            }
         } catch (error) {
             console.error("Erreur lors de la requête :", error);
+            // Vous pouvez ajouter ici un message d'erreur pour l'utilisateur
         }
     };
 
@@ -59,7 +69,7 @@ function InputInscription() {
             </div>
       
             <div className="inscription-actions">
-              <button onClick={handleSignup} className="inscription-button"><Link to="/login">S'inscrire</Link></button>
+              <button onClick={handleSignup} className="inscription-button">S'inscrire</button>
       
               <div className="already-account">
                 <p>J'ai déjà un compte, <Link className='link-connexion' to="/Login">connexion</Link></p>

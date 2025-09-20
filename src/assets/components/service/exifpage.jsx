@@ -22,7 +22,12 @@ function ExifPage() {
     formData.append("image", file);
 
     try {
-      const res = await axios.post("http://localhost:3000/scan/exif/read", formData);
+      const token = localStorage.getItem("token");
+      const res = await axios.post(
+        "http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/scan/exif/read",
+        formData,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       setMetadata(res.data.metadata);
       setFilename(res.data.file);
     } catch (err) {
@@ -33,11 +38,16 @@ function ExifPage() {
 
   const handleEdit = async () => {
     try {
-      await axios.post("http://localhost:3000/scan/exif/edit", {
-        file: filename,
-        tag,
-        value,
-      });
+      const token = localStorage.getItem("token");
+      await axios.post(
+        "http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/scan/exif/edit",
+        {
+          file: filename,
+          tag,
+          value,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       alert("✅ Métadonnée modifiée");
     } catch (err) {
       console.error(err);
@@ -47,9 +57,14 @@ function ExifPage() {
 
   const handleDelete = async () => {
     try {
-      await axios.post("http://localhost:3000/scan/exif/delete", {
-        file: filename,
-      });
+      const token = localStorage.getItem("token");
+      await axios.post(
+        "http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/scan/exif/delete",
+        {
+          file: filename,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       alert("✅ Métadonnées supprimées");
     } catch (err) {
       console.error(err);

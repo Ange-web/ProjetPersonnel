@@ -9,16 +9,32 @@ function InputLogin(){
 
     const handlelogin = async() =>{
         try{
-            const response = await fetch("http://localhost:3000/user/login",{
+            const response = await fetch("http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/user/login",{
                 method: "POST",
                 headers:{
                     "Content-Type": "application/json"
                 },
-                credentials: 'include',
                 body: JSON.stringify({email, password})
             });
-            const data = await response.json();
-            
+            const contentType = response.headers.get('content-type') || '';
+            const rawBody = await response.text();
+            let data;
+            if (contentType.includes('application/json')){
+                try {
+                    data = JSON.parse(rawBody);
+                } catch (e) {
+                    console.error("Réponse JSON invalide:", rawBody);
+                    throw new Error("Réponse du serveur invalide (JSON)");
+                }
+            } else {
+                // Tente un parse JSON sinon garde le texte brut pour debug
+                try {
+                    data = JSON.parse(rawBody);
+                } catch {
+                    data = { message: rawBody };
+                }
+            }
+
             if (response.ok){
                 console.log("Connnexion réussi !");
 
@@ -28,7 +44,7 @@ function InputLogin(){
 
                 navigate("/");
             } else{
-                console.error("Erreur :", data.message);
+                console.error("Erreur HTTP:", response.status, data);
             }
         }catch (error){
             console.error("Erreur lors de la requête :",error);
