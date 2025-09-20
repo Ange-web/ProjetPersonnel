@@ -24,7 +24,7 @@ function ExifPage() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        `http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/scan/exif/read`,
+        `${import.meta.env.VITE_API_URL}/scan/exif/read`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -40,7 +40,7 @@ function ExifPage() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        `http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/scan/exif/edit`,
+        `${import.meta.env.VITE_API_URL}/scan/exif/edit`,
         {
           file: filename,
           tag,
@@ -59,7 +59,7 @@ function ExifPage() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        `http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/scan/exif/delete`,
+        `${import.meta.env.VITE_API_URL}/scan/exif/delete`,
         {
           file: filename,
         },
