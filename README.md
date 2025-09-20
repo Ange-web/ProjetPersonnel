@@ -80,15 +80,28 @@ src/
 
 ## 🔧 Configuration
 
-L'application se connecte à une API backend hébergée sur AWS EC2 :
+### Variables d'environnement
+
+L'application utilise des variables d'environnement pour la configuration de l'API. Créez un fichier `.env` à la racine du projet :
+
+```bash
+# Copier le fichier d'exemple
+cp .env.example .env
 ```
-http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000
+
+Puis modifiez le fichier `.env` avec vos paramètres :
+
+```env
+VITE_API_URL=https://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000
 ```
+
+**Note** : Le fichier `.env` est ignoré par Git pour des raisons de sécurité. Le fichier `.env.example` contient un exemple de configuration.
 
 ## 📝 Fonctionnalités Récentes
 
 - ✅ Redirection automatique après inscription réussie
 - ✅ Gestion d'erreurs améliorée
+- ✅ Configuration via variables d'environnement
 - ✅ Interface utilisateur moderne et responsive
 - ✅ Services de sécurité intégrés
 

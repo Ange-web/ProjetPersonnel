@@ -19,7 +19,7 @@ const ScanPage = () => {
     try {
       const token= localStorage.getItem("token");
 
-      const response = await fetch('http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/scan/url', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/scan/url`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', "Authorization": `Bearer ${token}` },
         body: JSON.stringify({ url })
@@ -45,7 +45,7 @@ const ScanPage = () => {
     try {
       const prompt = `Explique les vulnérabilités suivantes de façon simple pour un utilisateur débutant :\n\n${JSON.stringify(results, null, 2)}`;
       const token = localStorage.getItem('token');
-      const response = await fetch('http://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:3000/scan/chat', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/scan/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ message: prompt })
