@@ -20,6 +20,7 @@
     justify-content: center;
     align-items: center;
     gap: 0.6rem;
+    flex-wrap: wrap;
   }
   
   .scan-form {
@@ -33,7 +34,8 @@
   .scan-input {
     padding: 0.6rem 1rem;
     font-size: 1rem;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
     transition: border-color 0.2s;
@@ -53,6 +55,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    white-space: nowrap;
   }
   
   .scan-button:hover {
@@ -88,6 +91,8 @@
     margin-bottom: 1rem;
     border-left: 4px solid orange;
     border-radius: 6px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
   
   .ai-explanation-box {
@@ -99,5 +104,90 @@
     text-align: left;
     white-space: pre-wrap;
     font-size: 0.95rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .scan-container {
+      margin: 2rem auto;
+      padding: 1.5rem;
+      max-width: 95%;
+    }
+    
+    .scan-title {
+      font-size: 1.5rem;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .scan-form {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .scan-input {
+      width: 100%;
+      max-width: 100%;
+    }
+    
+    .scan-button {
+      width: 100%;
+      max-width: 200px;
+    }
+    
+    .scan-results h2 {
+      font-size: 1.2rem;
+    }
+    
+    .scan-result-item {
+      padding: 0.75rem;
+    }
+    
+    .ai-explanation-box {
+      padding: 0.75rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .scan-container {
+      margin: 1rem auto;
+      padding: 1rem;
+    }
+    
+    .scan-title {
+      font-size: 1.3rem;
+    }
+    
+    .scan-form {
+      gap: 0.5rem;
+    }
+    
+    .scan-input {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.9rem;
+    }
+    
+    .scan-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .scan-results h2 {
+      font-size: 1.1rem;
+    }
+    
+    .scan-result-item {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .ai-explanation-box {
+      padding: 0.5rem;
+      font-size: 0.85rem;
+    }
   }
   

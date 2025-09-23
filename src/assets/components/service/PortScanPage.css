@@ -12,18 +12,28 @@
     font-weight: bold;
     margin-bottom: 1.5rem;
     color: #1f2937;
+    text-align: center;
+  }
+  
+  .portscan-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 500px;
   }
   
   .form-group {
     margin-bottom: 1rem;
     width: 100%;
-    max-width: 300px;
   }
   
   .form-label {
     display: block;
     font-weight: 600;
     margin-bottom: 0.5rem;
+    color: #374151;
   }
   
   .form-input,
@@ -33,6 +43,13 @@
     border: 1px solid #d1d5db;
     border-radius: 6px;
     font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+  
+  .form-input:focus,
+  .form-select:focus {
+    border-color: #2563eb;
+    outline: none;
   }
   
   .scan-button {
@@ -44,6 +61,8 @@
     border-radius: 8px;
     cursor: pointer;
     margin-top: 1rem;
+    width: 100%;
+    transition: background-color 0.2s;
   }
   
   .scan-button:hover {
@@ -54,15 +73,21 @@
     color: #dc2626;
     font-weight: 500;
     margin-top: 1rem;
+    text-align: center;
   }
   
   .scan-result {
     margin-top: 1.5rem;
     text-align: center;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
   
   .result-label {
     font-weight: 500;
+    color: #374151;
   }
   
   .result-value {
@@ -73,11 +98,17 @@
   .openports-section {
     margin-top: 2rem;
     text-align: center;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
   
   .openports-title {
     font-weight: 600;
     font-size: 1.2rem;
+    color: #1f2937;
+    margin-bottom: 1rem;
   }
   
   .openports-list {
@@ -85,5 +116,73 @@
     margin-top: 0.5rem;
     padding-left: 1.5rem;
     text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .portscan-wrapper {
+      padding: 1rem;
+    }
+    
+    .portscan-title {
+      font-size: 1.5rem;
+    }
+    
+    .portscan-form {
+      padding: 1.5rem;
+      max-width: 100%;
+    }
+    
+    .scan-result,
+    .openports-section {
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .openports-title {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .portscan-wrapper {
+      padding: 0.5rem;
+    }
+    
+    .portscan-title {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .portscan-form {
+      padding: 1rem;
+    }
+    
+    .form-input,
+    .form-select {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .scan-button {
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .scan-result,
+    .openports-section {
+      padding: 0.75rem;
+    }
+    
+    .openports-title {
+      font-size: 1rem;
+    }
+    
+    .openports-list {
+      padding-left: 1rem;
+      font-size: 0.9rem;
+    }
   }
   

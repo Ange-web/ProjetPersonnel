@@ -54,80 +54,83 @@ const PortScanPage = () => {
 
   return (
     <div>
-    <Header />
-    <div className="portscan-wrapper">
-      <h1 className="portscan-title">🔍 Scanner des ports TCP</h1>
-  
-      {/* Choix du type de scan */}
-      <div className="form-group">
-        <label className="form-label">Type de scan :</label>
-        <select
-          value={scanType}
-          onChange={(e) => setScanType(e.target.value)}
-          className="form-select"
-        >
-          <option value="local">🔒 Scan local (votre IP)</option>
-          <option value="public">🌍 IP publique ou nom de domaine</option>
-        </select>
+      <Header />
+      <div className="portscan-wrapper">
+        <h1 className="portscan-title">🔍 Scanner des ports TCP</h1>
+        
+        <div className="portscan-form">
+          {/* Choix du type de scan */}
+          <div className="form-group">
+            <label className="form-label">Type de scan :</label>
+            <select
+              value={scanType}
+              onChange={(e) => setScanType(e.target.value)}
+              className="form-select"
+            >
+              <option value="local">🔒 Scan local (votre IP)</option>
+              <option value="public">🌍 IP publique ou nom de domaine</option>
+            </select>
+          </div>
+    
+          {/* Input IP publique ou domaine */}
+          {scanType === "public" && (
+            <div className="form-group">
+              <label className="form-label">IP ou domaine :</label>
+              <input
+                type="text"
+                placeholder="Ex : 8.8.8.8 ou google.com"
+                value={targetIpOrDomain}
+                onChange={(e) => setTargetIpOrDomain(e.target.value)}
+                className="form-input"
+              />
+            </div>
+          )}
+    
+          {/* Input pour ports */}
+          <div className="form-group">
+            <label className="form-label">Ports à scanner :</label>
+            <input
+              type="text"
+              placeholder="Ex : 21,22,80,443"
+              value={portList}
+              onChange={(e) => setPortList(e.target.value)}
+              className="form-input"
+            />
+          </div>
+    
+          {/* Bouton */}
+          <button
+            onClick={handleScan}
+            disabled={loading || (scanType === "public" && !targetIpOrDomain)}
+            className="scan-button"
+          >
+            {loading ? "Scan en cours..." : "Lancer le scan"}
+          </button>
+    
+          {/* Erreur */}
+          {error && <p className="scan-error">{error}</p>}
+        </div>
+    
+        {/* Résultat */}
+        {scannedTarget && (
+          <div className="scan-result">
+            <p className="result-label">Cible scannée :</p>
+            <p className="result-value">{scannedTarget}</p>
+          </div>
+        )}
+    
+        {openPorts.length > 0 && (
+          <div className="openports-section">
+            <h2 className="openports-title">✅ Ports ouverts :</h2>
+            <ul className="openports-list">
+              {openPorts.map((port, index) => (
+                <li key={index}>Port {port}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
-  
-      {/* Input IP publique ou domaine */}
-      {scanType === "public" && (
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Ex : 8.8.8.8 ou google.com"
-            value={targetIpOrDomain}
-            onChange={(e) => setTargetIpOrDomain(e.target.value)}
-            className="form-input"
-          />
-        </div>
-      )}
-  
-      {/* Input pour ports */}
-      <div className="form-group">
-        <label className="form-label">Ports à scanner :</label>
-        <input
-          type="text"
-          placeholder="Ex : 21,22,80,443"
-          value={portList}
-          onChange={(e) => setPortList(e.target.value)}
-          className="form-input"
-        />
-      </div>
-  
-      {/* Bouton */}
-      <button
-        onClick={handleScan}
-        disabled={loading || (scanType === "public" && !targetIpOrDomain)}
-        className="scan-button"
-      >
-        {loading ? "Scan en cours..." : "Lancer le scan"}
-      </button>
-  
-      {/* Erreur */}
-      {error && <p className="scan-error">{error}</p>}
-  
-      {/* Résultat */}
-      {scannedTarget && (
-        <div className="scan-result">
-          <p className="result-label">Cible scannée :</p>
-          <p className="result-value">{scannedTarget}</p>
-        </div>
-      )}
-  
-      {openPorts.length > 0 && (
-        <div className="openports-section">
-          <h2 className="openports-title">✅ Ports ouverts :</h2>
-          <ul className="openports-list">
-            {openPorts.map((port, index) => (
-              <li key={index}>Port {port}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  </div>);  
+    </div>);  
 };
 
 export default PortScanPage;

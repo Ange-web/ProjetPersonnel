@@ -34,13 +34,15 @@ const IpPage = () => {
   return (
     <div>
       <Header />
-    <div className="ip-page">
-      <h1 className="ip-title">Votre adresse IP</h1>
-      {loading && <p className="ip-loading">Chargement...</p>}
-      {error && <p className="ip-error">{error}</p>}
-      {ip && <p className="ip-address">{ip}</p>}
-    </div>
-  </div>);  
+      <div className="ip-page">
+        <div className="ip-container">
+          <h1 className="ip-title">Votre adresse IP</h1>
+          {loading && <p className="ip-loading">Chargement...</p>}
+          {error && <p className="ip-error">{error}</p>}
+          {ip && <p className="ip-address">{ip}</p>}
+        </div>
+      </div>
+    </div>);  
 };
 
 export default IpPage;

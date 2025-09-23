@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background: #0a0f1c;
     gap: 60px;
     padding: 20px;
@@ -26,6 +26,7 @@
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: #374151;
   }
   
   input[type="email"], input[type="password"] {
@@ -33,6 +34,13 @@
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+  
+  input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #00bfff;
+    outline: none;
   }
   
   .connexion-button {
@@ -44,6 +52,7 @@
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
+    transition: background-color 0.2s;
   }
   
   .connexion-button:hover {
@@ -55,6 +64,7 @@
     position: relative;
     width: 100px;
     height: 160px;
+    flex-shrink: 0;
   }
   
   .shackle {
@@ -106,5 +116,96 @@
   @keyframes unlock {
     0% { transform: rotate(0deg) translateY(0); }
     100% { transform: rotate(-25deg) translateY(-5px); }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .login-page {
+      flex-direction: column;
+      gap: 30px;
+      padding: 15px;
+    }
+    
+    .cadenas-anim {
+      width: 80px;
+      height: 128px;
+    }
+    
+    .shackle {
+      left: 20px;
+      width: 40px;
+      height: 48px;
+      border-width: 6px;
+    }
+    
+    .lock {
+      width: 80px;
+      height: 80px;
+    }
+    
+    .keyhole {
+      width: 14px;
+      height: 32px;
+    }
+    
+    .keyhole::after {
+      width: 11px;
+      height: 11px;
+      top: -11px;
+    }
+    
+    .connexion-container {
+      padding: 25px;
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .login-page {
+      padding: 10px;
+      gap: 20px;
+    }
+    
+    .cadenas-anim {
+      width: 60px;
+      height: 96px;
+    }
+    
+    .shackle {
+      left: 15px;
+      width: 30px;
+      height: 36px;
+      border-width: 4px;
+    }
+    
+    .lock {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .keyhole {
+      width: 10px;
+      height: 24px;
+    }
+    
+    .keyhole::after {
+      width: 8px;
+      height: 8px;
+      top: -8px;
+    }
+    
+    .connexion-container {
+      padding: 20px;
+    }
+    
+    input[type="email"], input[type="password"] {
+      padding: 8px;
+      font-size: 0.9rem;
+    }
+    
+    .connexion-button {
+      padding: 10px;
+      font-size: 0.9rem;
+    }
   }
   
