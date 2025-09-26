@@ -7,7 +7,7 @@ import './style.css';
 
 
 const Accueil = () => (
-  <div>
+  <div className="page-container">
     <Header />
     <Home />
     <ServicesSection />
