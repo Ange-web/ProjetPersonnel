@@ -81,28 +81,10 @@ const Parcours = () => {
           </div>
           <div className="projects-grid">
             <div className="project-card">
-              <div className="project-icon">
-                <div className="nspy-logo">
-                  <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
-                    <path d="M10 5L5 8V20C5 28 8 35 15 37C22 35 25 28 25 20V8L20 5Z" fill="#20B2AA"/>
-                    <text x="20" y="25" textAnchor="middle" fill="white" fontSize="8" fontWeight="bold">N</text>
-                    <text x="45" y="25" textAnchor="middle" fill="#2d3748" fontSize="16" fontWeight="bold" fontFamily="Arial, sans-serif">NSPY</text>
-                  </svg>
-                </div>
-              </div>
               <h3>NSPY – Plateforme de cybersécurité</h3>
               <p>Interface web (React + Node/Express) centralisant des outils comme Nmap, Nuclei, ExifTool, etc.</p>
             </div>
             <div className="project-card">
-              <div className="project-icon">
-                <div className="adalicious-logo">
-                  <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
-                    <circle cx="15" cy="20" r="12" fill="#ff6b35"/>
-                    <text x="15" y="26" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">🍽️</text>
-                    <text x="45" y="25" textAnchor="middle" fill="#2d3748" fontSize="14" fontWeight="bold" fontFamily="Arial, sans-serif">Adalicious</text>
-                  </svg>
-                </div>
-              </div>
               <h3>Adalicious – Application de gestion de restaurant</h3>
               <p>Projet full-stack avec interface client & cuisine, API CRUD et base PostgreSQL.</p>
               <a href="https://adalicious-front.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-link">
@@ -110,47 +92,10 @@ const Parcours = () => {
               </a>
             </div>
             <div className="project-card">
-              <div className="project-icon">
-                <div className="clinique-logo">
-                  <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
-                    {/* Cercle extérieur avec couronne de laurier */}
-                    <circle cx="20" cy="20" r="18" fill="none" stroke="#4a5568" strokeWidth="2"/>
-                    <path d="M8 12 Q12 8 20 8 Q28 8 32 12 Q32 16 30 20 Q28 24 20 24 Q12 24 10 20 Q8 16 8 12" fill="none" stroke="#4a5568" strokeWidth="1.5"/>
-                    
-                    {/* Cercle intérieur bleu */}
-                    <circle cx="20" cy="20" r="12" fill="#87ceeb" stroke="#4682b4" strokeWidth="1"/>
-                    
-                    {/* Lignes de globe */}
-                    <path d="M12 20 Q20 12 28 20" stroke="white" strokeWidth="0.5" opacity="0.7"/>
-                    <path d="M12 20 Q20 28 28 20" stroke="white" strokeWidth="0.5" opacity="0.7"/>
-                    <path d="M20 8 Q12 20 20 32" stroke="white" strokeWidth="0.5" opacity="0.7"/>
-                    <path d="M20 8 Q28 20 20 32" stroke="white" strokeWidth="0.5" opacity="0.7"/>
-                    
-                    {/* Symbole 3S orange */}
-                    <text x="20" y="25" textAnchor="middle" fill="#ff6b35" fontSize="12" fontWeight="bold" fontFamily="Arial, sans-serif">3S</text>
-                    
-                    {/* Croix médicales */}
-                    <circle cx="25" cy="12" r="2" fill="white" stroke="#ff6b35" strokeWidth="0.5"/>
-                    <path d="M24 12 L26 12 M25 11 L25 13" stroke="#ff6b35" strokeWidth="0.8"/>
-                    <circle cx="28" cy="14" r="1.5" fill="white" stroke="#ff6b35" strokeWidth="0.5"/>
-                    <path d="M27.5 14 L28.5 14 M28 13.5 L28 14.5" stroke="#ff6b35" strokeWidth="0.6"/>
-                    
-                    {/* Texte Compassion */}
-                    <text x="50" y="25" textAnchor="middle" fill="#2d3748" fontSize="12" fontWeight="bold" fontFamily="Arial, sans-serif">Compassion</text>
-                  </svg>
-                </div>
-              </div>
               <h3>Clinique Compassion 3S – Site médical</h3>
               <p>Site vitrine moderne avec prise de rendez-vous, design UX et charte graphique (bleu & orange).</p>
             </div>
             <div className="project-card">
-              <div className="project-icon">
-                <div className="mobel-logo">
-                  <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
-                    <text x="40" y="25" textAnchor="middle" fill="#4a5568" fontSize="18" fontWeight="bold" fontFamily="Arial, sans-serif">Möbel</text>
-                  </svg>
-                </div>
-              </div>
               <h3>Möbel – E-commerce de meubles</h3>
               <p>Application de vente en ligne (React + PostgreSQL) avec gestion des utilisateurs et catalogue produits.</p>
               <a href="https://moble-front.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-link">
