@@ -10,7 +10,6 @@ const Accueil = () => (
   <div>
     <Header />
     <Home />
-    <TrustSection />
     <ServicesSection />
   </div>
 );
