@@ -54,6 +54,7 @@ const Header = () => {
           <Link to="/servicehome">Services</Link>
           <a href="#">Contact</a>
           <a href="#">À propos</a>
+          <Link to="/parcours">Mon Parcours</Link>
         </nav>
 
         {/* Si utilisateur connecté */}

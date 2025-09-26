@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
 import Accueil from './assets/components/acceuil/acceuil';
+import Parcours from './assets/components/parcours/parcours';
 import InputInscription from './assets/components/log/formInsciption';
 import InputLogin from './assets/components/log/formlogin';
 import Servicehome from './assets/components/service/service-home';
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Accueil />,
+      },
+      {
+        path: 'parcours',
+        element: <Parcours />,
       },
       {
         path: 'signup',
