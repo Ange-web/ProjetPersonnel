@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../acceuil/header';
 import adatechLogo from '../../images/adatech.png';
+import selfLearningIcon from '../../images/self-learning.png';
 import './parcours.css';
 
 const Parcours = () => {
@@ -54,16 +55,14 @@ const Parcours = () => {
               </ul>
             </div>
             <div className="formation-card">
-              <div className="formation-icon">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <path d="M20 2L6 8V20C6 26.6 9.3 32.6 20 34C30.7 32.6 34 26.6 34 20V8L20 2Z" fill="#20B2AA"/>
-                  <text x="20" y="24" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">🔹</text>
-                </svg>
+              <div className="formation-logo">
+                <img src={selfLearningIcon} alt="Apprentissage autonome" className="school-logo" />
               </div>
               <h3>Apprentissage autonome</h3>
               <ul>
-                <li>Formation en réseaux & cybersécurité</li>
-                <li>Administration système Linux, configuration VPN (WireGuard), sécurité réseau</li>
+                <li>Développement de projets personnels (NSPY, Adalicious, Mobel)</li>
+                <li>Veille technologique et formation continue en cybersécurité</li>
+                <li>Pratique des outils de sécurité (Nmap, Nuclei, ExifTool)</li>
               </ul>
             </div>
           </div>
