@@ -148,15 +148,15 @@ const Parcours = () => {
           <h2>Objectifs</h2>
           <div className="objectives-list">
             <div className="objective-item">
-              <div className="objective-icon">👉</div>
+              <div className="objective-icon"></div>
               <p>Développer mes compétences en Full-Stack et Cybersécurité</p>
             </div>
             <div className="objective-item">
-              <div className="objective-icon">👉</div>
+              <div className="objective-icon"></div>
               <p>Intégrer une équipe tech en alternance pour monter en expertise</p>
             </div>
             <div className="objective-item">
-              <div className="objective-icon">👉</div>
+              <div className="objective-icon"></div>
               <p>Continuer à construire des solutions utiles et accessibles au grand public</p>
             </div>
           </div>
