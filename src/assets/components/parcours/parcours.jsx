@@ -122,14 +122,13 @@ const Parcours = () => {
             </div>
             <div className="project-card">
               <div className="project-icon">
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <rect x="15" y="25" width="30" height="15" rx="2" fill="#20B2AA"/>
-                  <rect x="20" y="30" width="20" height="2" fill="white"/>
-                  <rect x="20" y="33" width="20" height="2" fill="white"/>
-                  <rect x="20" y="36" width="15" height="2" fill="white"/>
-                </svg>
+                <div className="mobel-logo">
+                  <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                    <text x="40" y="25" textAnchor="middle" fill="#4a5568" fontSize="18" fontWeight="bold" fontFamily="Arial, sans-serif">Möbel</text>
+                  </svg>
+                </div>
               </div>
-              <h3>Mobel – E-commerce de meubles</h3>
+              <h3>Möbel – E-commerce de meubles</h3>
               <p>Application de vente en ligne (React + PostgreSQL) avec gestion des utilisateurs et catalogue produits.</p>
               <a href="https://moble-front.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-link">
                 Voir le projet →
