@@ -62,7 +62,7 @@ const Parcours = () => {
                   <text x="20" y="24" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">🔹</text>
                 </svg>
               </div>
-              <h3>Studi</h3>
+              <h3>Apprentissage autonome</h3>
               <ul>
                 <li>Formation en réseaux & cybersécurité</li>
                 <li>Administration système Linux, configuration VPN (WireGuard), sécurité réseau</li>
