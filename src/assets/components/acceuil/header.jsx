@@ -53,31 +53,30 @@ const Header = () => {
           <Link to="/">Accueil</Link>
           <Link to="/servicehome">Services</Link>
           <a href="#">Contact</a>
-          <a href="#">À propos</a>
           <Link to="/parcours">Mon Parcours</Link>
         </nav>
 
-        {/* Si utilisateur connecté */}
-        {user ? (
-          <div
-            className="user-info"
-            onMouseEnter={() => setShowPopup(true)}
-            onMouseLeave={() => setShowPopup(false)}
-          >
-            
-            <span className="username">{user.username}</span>
-
-            {showPopup && (
-              <div className="profile-popup" onClick={() => setShowModal(true)}>
-                Profil
-              </div>
-            )}
-          </div>
-        ) : (
-          <Link to="/login">
-            <button className="btn-primary">Connexion</button>
-          </Link>
-        )}
+        <div className="header-actions">
+          {/* Si utilisateur connecté */}
+          {user ? (
+            <div
+              className="user-info"
+              onMouseEnter={() => setShowPopup(true)}
+              onMouseLeave={() => setShowPopup(false)}
+            >
+              <span className="username">{user.username}</span>
+              {showPopup && (
+                <div className="profile-popup" onClick={() => setShowModal(true)}>
+                  Profil
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link to="/login">
+              <button className="btn-primary">Connexion</button>
+            </Link>
+          )}
+        </div>
       </header>
 
       {/* Modale du formulaire de profil */}

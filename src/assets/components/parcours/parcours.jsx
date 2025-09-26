@@ -31,7 +31,7 @@ const Parcours = () => {
             </p>
             <p className="highlight-text">
               Je suis actuellement à la recherche d'une alternance de 12 à 36 mois à partir de 
-              juin–septembre 2025, avec un rythme 4 jours en entreprise / 1 jour en école.
+              Octobre 2025, avec un rythme 4 jours en entreprise / 1 jour en école.
             </p>
           </div>
         </div>
