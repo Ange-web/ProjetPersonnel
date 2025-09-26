@@ -107,6 +107,9 @@ const Parcours = () => {
               </div>
               <h3>Adalicious – Application de gestion de restaurant</h3>
               <p>Projet full-stack avec interface client & cuisine, API CRUD et base PostgreSQL.</p>
+              <a href="https://adalicious-front.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-link">
+                Voir le projet →
+              </a>
             </div>
             <div className="project-card">
               <div className="project-icon">

@@ -220,6 +220,24 @@
   font-size: 0.95rem;
 }
 
+.project-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #20B2AA;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.project-link:hover {
+  background-color: #1a9b94;
+  transform: translateY(-1px);
+}
+
 .objectives-list {
   display: flex;
   flex-direction: column;
