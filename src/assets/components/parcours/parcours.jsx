@@ -132,8 +132,11 @@ const Parcours = () => {
                   <rect x="20" y="36" width="15" height="2" fill="white"/>
                 </svg>
               </div>
-              <h3>Refactory – E-commerce de meubles</h3>
+              <h3>Mobel – E-commerce de meubles</h3>
               <p>Application de vente en ligne (React + PostgreSQL) avec gestion des utilisateurs et catalogue produits.</p>
+              <a href="https://moble-front.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-link">
+                Voir le projet →
+              </a>
             </div>
           </div>
         </div>
