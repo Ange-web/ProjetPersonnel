@@ -16,24 +16,36 @@ const Home = () => (
         </button>
       </div>
       <div className="home-illustration">
-        <div className="security-dome">
-          <div className="server-icon">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-              <rect x="20" y="30" width="40" height="30" rx="2" fill="#374151"/>
-              <rect x="25" y="35" width="30" height="2" fill="#20B2AA"/>
-              <rect x="25" y="40" width="30" height="2" fill="#20B2AA"/>
-              <rect x="25" y="45" width="30" height="2" fill="#20B2AA"/>
-              <rect x="25" y="50" width="20" height="2" fill="#20B2AA"/>
-            </svg>
-          </div>
-          <div className="network-nodes">
-            <div className="node node-1"></div>
-            <div className="node node-2"></div>
-            <div className="node node-3"></div>
-            <div className="node node-4"></div>
-            <div className="node node-5"></div>
-            <div className="node node-6"></div>
-          </div>
+        <div className="analyze-icon-container">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+            {/* Document de base */}
+            <rect x="30" y="20" width="60" height="80" rx="4" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="2"/>
+            
+            {/* Lignes de texte */}
+            <rect x="40" y="35" width="40" height="2" rx="1" fill="#20B2AA"/>
+            <rect x="40" y="42" width="35" height="2" rx="1" fill="#20B2AA"/>
+            <rect x="40" y="49" width="30" height="2" rx="1" fill="#20B2AA"/>
+            <rect x="40" y="56" width="25" height="2" rx="1" fill="#20B2AA"/>
+            
+            {/* Icône de loupe */}
+            <circle cx="75" cy="45" r="12" fill="none" stroke="#20B2AA" strokeWidth="3"/>
+            <line x1="84" y1="54" x2="90" y2="60" stroke="#20B2AA" strokeWidth="3" strokeLinecap="round"/>
+            
+            {/* Graphique d'analyse */}
+            <rect x="45" y="70" width="3" height="15" fill="#20B2AA"/>
+            <rect x="52" y="65" width="3" height="20" fill="#20B2AA"/>
+            <rect x="59" y="60" width="3" height="25" fill="#20B2AA"/>
+            <rect x="66" y="70" width="3" height="15" fill="#20B2AA"/>
+            
+            {/* Points de données */}
+            <circle cx="46.5" cy="85" r="2" fill="#20B2AA"/>
+            <circle cx="53.5" cy="80" r="2" fill="#20B2AA"/>
+            <circle cx="60.5" cy="75" r="2" fill="#20B2AA"/>
+            <circle cx="67.5" cy="85" r="2" fill="#20B2AA"/>
+            
+            {/* Ligne de tendance */}
+            <path d="M46.5 85 L53.5 80 L60.5 75 L67.5 85" stroke="#20B2AA" strokeWidth="2" fill="none"/>
+          </svg>
         </div>
       </div>
     </div>
