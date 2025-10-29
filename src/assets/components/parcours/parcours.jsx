@@ -60,7 +60,7 @@ const Parcours = () => {
               </div>
               <h3>Apprentissage autonome</h3>
               <ul>
-                <li>Développement de projets personnels (NSPY, Adalicious, Mobel)</li>
+                <li>Développement de projet personnel (NSPY)</li>
                 <li>Veille technologique et formation continue en cybersécurité</li>
                 <li>Pratique des outils de sécurité (Nmap, Nuclei, ExifTool)</li>
               </ul>

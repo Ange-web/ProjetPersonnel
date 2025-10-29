@@ -18,7 +18,7 @@ const IpPage = () => {
       }, 
     })
       .then((res) => {
-        if (!res.ok) throw new Error("Erreur lors de la récupération");
+        if (!res.ok) throw new Error("Merci de vous connecter afin d’accéder à l’outil.");
         return res.json();
       })
       .then((data) => {
