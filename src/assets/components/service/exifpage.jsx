@@ -9,6 +9,7 @@ function ExifPage() {
   const [tag, setTag] = useState("");
   const [value, setValue] = useState("");
   const [filename, setFilename] = useState("");
+  const NOT_AUTH_MSG = "Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.";
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -23,7 +24,6 @@ function ExifPage() {
 
     try {
       const token = localStorage.getItem("token");
-      const NOT_AUTH_MSG = "Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.";
       if (!token) { alert(NOT_AUTH_MSG); return; }
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/scan/exif/read`,
@@ -42,7 +42,6 @@ function ExifPage() {
   const handleEdit = async () => {
     try {
       const token = localStorage.getItem("token");
-      const NOT_AUTH_MSG = "Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.";
       if (!token) { alert(NOT_AUTH_MSG); return; }
       await axios.post(
         `${import.meta.env.VITE_API_URL}/scan/exif/edit`,
@@ -64,7 +63,6 @@ function ExifPage() {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      const NOT_AUTH_MSG = "Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.";
       if (!token) { alert(NOT_AUTH_MSG); return; }
       await axios.post(
         `${import.meta.env.VITE_API_URL}/scan/exif/delete`,
@@ -78,6 +76,39 @@ function ExifPage() {
       console.error(err);
       if (err?.response?.status === 401) alert("Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.");
       else alert("❌ Erreur lors de la suppression");
+    }
+  };
+
+  const handleDownload = async () => {
+    try {
+      if (!filename) { alert("Aucun fichier à télécharger."); return; }
+      const token = localStorage.getItem("token");
+      if (!token) { alert(NOT_AUTH_MSG); return; }
+
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/download/${encodeURIComponent(filename)}`, {
+        method: 'GET',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (res.status === 401) { alert(NOT_AUTH_MSG); return; }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || 'Erreur lors du téléchargement.');
+        return;
+      }
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename || 'fichier-modifie';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error(err);
+      alert('Erreur lors du téléchargement.');
     }
   };
 
@@ -133,6 +164,15 @@ function ExifPage() {
           >
             Supprimer toutes les métadonnées
           </button>
+
+          <div className="mt-4">
+            <button
+              onClick={handleDownload}
+              className="px-4 py-2 bg-indigo-600 text-white rounded"
+            >
+              Télécharger le fichier modifié
+            </button>
+          </div>
         </div>
       )}
     </div>
