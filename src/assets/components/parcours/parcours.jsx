@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../acceuil/header';
 import adatechLogo from '../../images/adatech.png';
 import selfLearningIcon from '../../images/self-learning.png';
+import profileImage from '../../images/Gemini_Generated_Image_kyfkz9kyfkz9kyfk.png';
 import './parcours.css';
 
 const Parcours = () => {
@@ -15,7 +16,7 @@ const Parcours = () => {
           <div className="profile-image">
             <div className="profile-placeholder">
               <img
-                src="/profile.jpg"
+                src={profileImage}
                 alt="Photo de profil d'Ange Nono"
                 style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover' }}
               />
