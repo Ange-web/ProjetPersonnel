@@ -69,10 +69,10 @@ const Parcours = () => {
         </div>
       </section>
 
-      {/* Section Expériences Professionnelles */}
+      {/* Section Expériences Professionnelles & Associatives */}
       <section className="projects-section">
         <div className="container">
-          <h2>Expériences Professionnelles</h2>
+          <h2>Expériences Professionnelles & Associatives</h2>
           <div className="projects-grid">
             <div className="project-card">
               <h3>Développeur Fullstack — Depuis novembre 2025</h3>
@@ -82,15 +82,6 @@ const Parcours = () => {
                 connaissances en cybersécurité à travers des projets réels et porteurs de sens.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section Engagements Associatifs */}
-      <section className="projects-section">
-        <div className="container">
-          <h2>Engagements Associatifs</h2>
-          <div className="projects-grid">
             <div className="project-card">
               <h3>Développeur Fullstack — Depuis septembre 2025</h3>
               <p><strong>Adess France</strong></p>
