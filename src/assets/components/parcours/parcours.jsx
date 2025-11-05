@@ -32,8 +32,8 @@ const Parcours = () => {
               divers outils de sécurité (Nmap, Nuclei, ExifTool, etc.) pour tous, même sans connaissances techniques.
             </p>
             <p className="highlight-text">
-              Je suis actuellement à la recherche d'une alternance de 12 à 36 mois à partir de 
-              Octobre 2025, avec un rythme 4 jours en entreprise / 1 jour en école.
+              Je suis actuellement à la recherche d'une alternance de 12 mois dès 
+              maintenant, avec un rythme 4 jours en entreprise / 1 jour en école.
             </p>
           </div>
         </div>
@@ -64,6 +64,41 @@ const Parcours = () => {
                 <li>Veille technologique et formation continue en cybersécurité</li>
                 <li>Pratique des outils de sécurité (Nmap, Nuclei, ExifTool)</li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section Expériences Professionnelles */}
+      <section className="projects-section">
+        <div className="container">
+          <h2>Expériences Professionnelles</h2>
+          <div className="projects-grid">
+            <div className="project-card">
+              <h3>Développeur Fullstack — Depuis novembre 2025</h3>
+              <p><strong>A&B PROJECT-EE France</strong></p>
+              <p>
+                Engagé au sein de l’association afin de renforcer mes compétences techniques et approfondir mes
+                connaissances en cybersécurité à travers des projets réels et porteurs de sens.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section Engagements Associatifs */}
+      <section className="projects-section">
+        <div className="container">
+          <h2>Engagements Associatifs</h2>
+          <div className="projects-grid">
+            <div className="project-card">
+              <h3>Développeur Fullstack — Depuis septembre 2025</h3>
+              <p><strong>Adess France</strong></p>
+              <p>
+                Engagement associatif dans le but de développer mes compétences pratiques, enrichir mon expérience terrain
+                et renforcer mes aptitudes en organisation, communication et travail d’équipe, tout en contribuant à des
+                projets solidaires.
+              </p>
             </div>
           </div>
         </div>
