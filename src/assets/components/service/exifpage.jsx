@@ -23,6 +23,8 @@ function ExifPage() {
 
     try {
       const token = localStorage.getItem("token");
+      const NOT_AUTH_MSG = "Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.";
+      if (!token) { alert(NOT_AUTH_MSG); return; }
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/scan/exif/read`,
         formData,
@@ -32,13 +34,16 @@ function ExifPage() {
       setFilename(res.data.file);
     } catch (err) {
       console.error(err);
-      alert("❌ Erreur lors de l'upload");
+      if (err?.response?.status === 401) alert("Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.");
+      else alert("❌ Erreur lors de l'upload");
     }
   };
 
   const handleEdit = async () => {
     try {
       const token = localStorage.getItem("token");
+      const NOT_AUTH_MSG = "Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.";
+      if (!token) { alert(NOT_AUTH_MSG); return; }
       await axios.post(
         `${import.meta.env.VITE_API_URL}/scan/exif/edit`,
         {
@@ -51,13 +56,16 @@ function ExifPage() {
       alert("✅ Métadonnée modifiée");
     } catch (err) {
       console.error(err);
-      alert("❌ Erreur lors de la modification");
+      if (err?.response?.status === 401) alert("Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.");
+      else alert("❌ Erreur lors de la modification");
     }
   };
 
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
+      const NOT_AUTH_MSG = "Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.";
+      if (!token) { alert(NOT_AUTH_MSG); return; }
       await axios.post(
         `${import.meta.env.VITE_API_URL}/scan/exif/delete`,
         {
@@ -68,7 +76,8 @@ function ExifPage() {
       alert("✅ Métadonnées supprimées");
     } catch (err) {
       console.error(err);
-      alert("❌ Erreur lors de la suppression");
+      if (err?.response?.status === 401) alert("Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.");
+      else alert("❌ Erreur lors de la suppression");
     }
   };
 

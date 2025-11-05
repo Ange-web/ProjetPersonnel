@@ -18,6 +18,13 @@ const ScanPage = () => {
 
     try {
       const token= localStorage.getItem("token");
+      const NOT_AUTH_MSG = 'Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.';
+
+      if (!token) {
+        setError(NOT_AUTH_MSG);
+        setLoading(false);
+        return;
+      }
 
       const response = await fetch(`${import.meta.env.VITE_API_URL}/scan/url`, {
         method: 'POST',
@@ -30,7 +37,8 @@ const ScanPage = () => {
       if (response.ok) {
         setResults(data.results || []);
       } else {
-        setError(data.error || 'Erreur inconnue.');
+        if (response.status === 401) setError(NOT_AUTH_MSG);
+        else setError(data.error || 'Erreur inconnue.');
       }
     } catch (err) {
       console.error(err);
@@ -45,6 +53,12 @@ const ScanPage = () => {
     try {
       const prompt = `Explique les vulnérabilités suivantes de façon simple pour un utilisateur débutant :\n\n${JSON.stringify(results, null, 2)}`;
       const token = localStorage.getItem('token');
+      const NOT_AUTH_MSG = 'Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.';
+
+      if (!token) {
+        setIaExplanation(NOT_AUTH_MSG);
+        return;
+      }
       const response = await fetch(`${import.meta.env.VITE_API_URL}/scan/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
@@ -52,7 +66,8 @@ const ScanPage = () => {
       });
 
       const data = await response.json();
-      setIaExplanation(data.message?.content || 'Pas de réponse reçue.');
+      if (response.status === 401) setIaExplanation(NOT_AUTH_MSG);
+      else setIaExplanation(data.message?.content || 'Pas de réponse reçue.');
     } catch (err) {
       console.error(err);
       setIaExplanation('Erreur lors de l’appel à l’IA.');

@@ -9,6 +9,13 @@ const IpPage = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const NOT_AUTH_MSG = "Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.";
+
+    if (!token) {
+      setError(NOT_AUTH_MSG);
+      setLoading(false);
+      return;
+    }
 
     fetch(`${import.meta.env.VITE_API_URL}/scan/ip`,{
       method: "GET",
@@ -18,7 +25,10 @@ const IpPage = () => {
       }, 
     })
       .then((res) => {
-        if (!res.ok) throw new Error("Merci de vous connecter afin d’accéder à l’outil.");
+        if (!res.ok) {
+          if (res.status === 401) throw new Error(NOT_AUTH_MSG);
+          throw new Error("Une erreur est survenue.");
+        }
         return res.json();
       })
       .then((data) => {

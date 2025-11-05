@@ -25,6 +25,13 @@ const PortScanPage = () => {
 
     try {
       const token= localStorage.getItem("token");
+      const NOT_AUTH_MSG = "Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.";
+
+      if (!token) {
+        setError(NOT_AUTH_MSG);
+        setLoading(false);
+        return;
+      }
 
       const response = await fetch(`${import.meta.env.VITE_API_URL}/scan/port`, {
         method: "POST",
@@ -43,7 +50,11 @@ const PortScanPage = () => {
         setScannedTarget(data.scannedIp);
         setOpenPorts(data.openPorts);
       } else {
-        setError(data.error || "Erreur pendant le scan.");
+        if (response.status === 401) {
+          setError(NOT_AUTH_MSG);
+        } else {
+          setError(data.error || "Erreur pendant le scan.");
+        }
       }
     } catch (err) {
       setError("Impossible de contacter le serveur.");
