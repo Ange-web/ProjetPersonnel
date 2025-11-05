@@ -31,7 +31,11 @@ function ExifPage() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setMetadata(res.data.metadata);
-      setFilename(res.data.file);
+      const returnedFile = res.data.file;
+      const safeName = typeof returnedFile === 'string'
+        ? returnedFile.split('\\').pop().split('/').pop()
+        : '';
+      setFilename(safeName);
     } catch (err) {
       console.error(err);
       if (err?.response?.status === 401) alert("Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.");
@@ -85,7 +89,7 @@ function ExifPage() {
       const token = localStorage.getItem("token");
       if (!token) { alert(NOT_AUTH_MSG); return; }
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/download/${encodeURIComponent(filename)}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/scan/exif/download/${encodeURIComponent(filename)}`, {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },
       });
