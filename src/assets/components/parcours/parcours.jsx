@@ -14,11 +14,11 @@ const Parcours = () => {
         <div className="about-content">
           <div className="profile-image">
             <div className="profile-placeholder">
-              <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-                <circle cx="60" cy="60" r="60" fill="#e2e8f0"/>
-                <circle cx="60" cy="45" r="20" fill="#20B2AA"/>
-                <path d="M30 90c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="#20B2AA"/>
-              </svg>
+              <img
+                src="/profile.jpg"
+                alt="Photo de profil d'Ange Nono"
+                style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover' }}
+              />
             </div>
           </div>
           <div className="about-text">
