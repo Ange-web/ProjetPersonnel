@@ -77,7 +77,7 @@ const Parcours = () => {
           <div className="projects-grid">
             <div className="project-card">
               <h3>Développeur Fullstack — Depuis novembre 2025</h3>
-              <p><strong>A&B PROJECT-EE France</strong></p>
+              <p><strong>A&B PROJECT-EE </strong></p>
               <p>
                 Engagé au sein de l’association afin de renforcer mes compétences techniques et approfondir mes
                 connaissances en cybersécurité à travers des projets réels et porteurs de sens.
@@ -85,7 +85,7 @@ const Parcours = () => {
             </div>
             <div className="project-card">
               <h3>Développeur Fullstack — Depuis septembre 2025</h3>
-              <p><strong>Adess France</strong></p>
+              <p><strong>Adess </strong></p>
               <p>
                 Engagement associatif dans le but de développer mes compétences pratiques, enrichir mon expérience terrain
                 et renforcer mes aptitudes en organisation, communication et travail d’équipe, tout en contribuant à des

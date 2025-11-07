@@ -43,7 +43,9 @@ const Footer = () => {
                   <circle cx="8" cy="8" r="7" fill="#20B2AA"/>
                   <text x="8" y="11" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">in</text>
                 </svg>
-                <a href="#">linkedin.com/company/nspy</a>
+                <a href="https://www.linkedin.com/in/ange-nono-a4480a349/" target="_blank" rel="noopener noreferrer">
+                  linkedin.com/in/ange-nono-a4480a349
+                </a>
               </div>
             </li>
           </ul>
