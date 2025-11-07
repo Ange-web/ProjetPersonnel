@@ -5,7 +5,7 @@ import './style.css';
 const ServicesSection = () => (
   <section className="services">
     <ServiceCard
-      icon="⚙️"
+      icon="configuration-image"
       title="Évaluation de configuration"
       description="Je teste les paramètres réseau comme les adresses IP et les serveurs DNS de manière simple pour détecter d’éventuelles erreurs ou incohérences dans votre système."
     />

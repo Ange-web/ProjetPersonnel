@@ -4,6 +4,13 @@ import './style.css';
 const ServiceCard = ({ icon, title, description }) => (
   <div className="service-card">
     <div className="service-icon">
+      {icon === "configuration-image" && (
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/6671/6671901.png"
+          alt="Icône Évaluation de configuration"
+          style={{ width: '48px', height: '48px' }}
+        />
+      )}
       {icon === "⚙️" && (
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
           <circle cx="24" cy="24" r="20" fill="#20B2AA"/>
