@@ -66,22 +66,44 @@ body {
     font-weight: 500;
   }
   
-  .profile-popup {
+.profile-popup {
     position: absolute;
     top: 100%;
     right: 0;
     background-color: #1a202c;
     color: #e2e8f0;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1rem;
     border-radius: 6px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     z-index: 1000;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 160px;
   }
-  
-  .profile-popup:hover {
-    background-color: #2d3748;
+
+  .profile-popup-link {
+    background: none;
+    border: none;
+    color: #e2e8f0;
+    font-size: 0.95rem;
+    text-align: left;
+    cursor: pointer;
+    padding: 0.35rem 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .profile-popup-link:hover {
+    color: #63b3ed;
+    transform: translateX(4px);
+  }
+
+  .profile-popup-link.logout {
+    color: #f87171;
+  }
+
+  .profile-popup-link.logout:hover {
+    color: #feb2b2;
   }
   
   .btn-primary {

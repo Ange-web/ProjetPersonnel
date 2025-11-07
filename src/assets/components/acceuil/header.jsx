@@ -31,6 +31,7 @@ const Header = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setUser(null);
+    setShowPopup(false);
     setShowModal(false);
     navigate('/login');
   };
@@ -66,8 +67,21 @@ const Header = () => {
             >
               <span className="username">{user.username}</span>
               {showPopup && (
-                <div className="profile-popup" onClick={() => setShowModal(true)}>
-                  Profil
+                <div className="profile-popup">
+                  <button
+                    type="button"
+                    className="profile-popup-link"
+                    onClick={() => setShowModal(true)}
+                  >
+                    Profil
+                  </button>
+                  <button
+                    type="button"
+                    className="profile-popup-link logout"
+                    onClick={handleLogout}
+                  >
+                    Déconnexion
+                  </button>
                 </div>
               )}
             </div>
