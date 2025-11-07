@@ -17,6 +17,13 @@ const ServiceCard = ({ icon, title, description }) => (
           <path d="M24 8L28 16L36 16L30 22L32 30L24 26L16 30L18 22L12 16L20 16L24 8Z" fill="white"/>
         </svg>
       )}
+      {icon === "etat-configuration-image" && (
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/4115/4115372.png"
+          alt="Icône État de la configuration"
+          style={{ width: '48px', height: '48px' }}
+        />
+      )}
       {icon === "🛡️" && (
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
           <path d="M24 4L8 12V24C8 32 12 38 24 42C36 38 40 32 40 24V12L24 4Z" fill="#20B2AA"/>
@@ -30,6 +37,13 @@ const ServiceCard = ({ icon, title, description }) => (
           <circle cx="20" cy="20" r="8" fill="white"/>
           <path d="M28 28L36 36" stroke="white" strokeWidth="2" strokeLinecap="round"/>
         </svg>
+      )}
+      {icon === "portscan-image" && (
+        <img
+          src="https://img.icons8.com/?size=512&id=83lQoaxcNkjG&format=png"
+          alt="Icône Port Ethernet"
+          style={{ width: '48px', height: '48px' }}
+        />
       )}
     </div>
     <h3>{title}</h3>
