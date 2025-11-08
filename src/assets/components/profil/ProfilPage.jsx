@@ -27,7 +27,7 @@ const ProfilPage = () => {
 
       try {
         // Récupérer les données utilisateur depuis l'API avec le token
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/user/profile`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/profile`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -50,8 +50,10 @@ const ProfilPage = () => {
 
         const data = await response.json();
         
-        if (data.user) {
-          const userData = data.user;
+        // Le backend peut renvoyer directement l'objet user ou dans data.user
+        const userData = data.user || data;
+        
+        if (userData && userData.id) {
           setUser(userData);
           setEditedData({
             prenom: userData.prenom || '',
@@ -59,9 +61,11 @@ const ProfilPage = () => {
             username: userData.username || ''
           });
           
-          // Mettre à jour localStorage avec les données à jour
+          // Mettre à jour localStorage avec les données à jour depuis l'API
           localStorage.setItem('user', JSON.stringify(userData));
           console.log('✅ Données utilisateur récupérées depuis l\'API :', userData);
+          console.log('📝 Prénom depuis API :', userData.prenom);
+          console.log('📝 Nom depuis API :', userData.nom);
         } else {
           throw new Error('Données utilisateur non trouvées dans la réponse');
         }
@@ -115,7 +119,7 @@ const ProfilPage = () => {
         return;
       }
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/user/update`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
