@@ -10,6 +10,7 @@ import ScanPage from './assets/components/service/urlscan';
 import IpPage from './assets/components/service/ipscan';
 import PortScanPage from './assets/components/service/portscan';
 import ExifPage from './assets/components/service/exifpage';
+import ProfilPage from './assets/components/profil/ProfilPage';
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: 'scanexif',  
         element: <ExifPage />
+      },
+      {
+        path: 'profil',
+        element: <ProfilPage />
       },
     ]
   }

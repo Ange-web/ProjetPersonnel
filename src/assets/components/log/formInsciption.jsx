@@ -25,14 +25,15 @@ function InputInscription() {
             if (response.ok) {
                 console.log("Inscription réussie :", data);
                 // Rediriger vers la page de connexion après une inscription réussie
-                navigate("/login");
+                navigate("/Login");
             } else {
                 console.error("Erreur lors de l'inscription :", data);
-                // Vous pouvez ajouter ici un message d'erreur pour l'utilisateur
+                // Afficher un message d'erreur à l'utilisateur
+                alert(data.error || "Erreur lors de l'inscription. Veuillez réessayer.");
             }
         } catch (error) {
             console.error("Erreur lors de la requête :", error);
-            // Vous pouvez ajouter ici un message d'erreur pour l'utilisateur
+            alert("Erreur de connexion au serveur. Veuillez réessayer.");
         }
     };
 

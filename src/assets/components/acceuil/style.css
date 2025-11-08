@@ -91,6 +91,9 @@ body {
     cursor: pointer;
     padding: 0.35rem 0;
     transition: color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+    display: block;
+    width: 100%;
   }
 
   .profile-popup-link:hover {

@@ -3,12 +3,10 @@ import './style.css';
 import logo from '../../images/logo.png';
 
 import { Link, useNavigate } from 'react-router-dom';
-//import ProfilForm from '../profil/ProfilForm'; // ton composant séparé
 
 const Header = () => {
   const [user, setUser] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   // Récupère l'utilisateur connecté depuis localStorage
@@ -32,15 +30,7 @@ const Header = () => {
     localStorage.removeItem('user');
     setUser(null);
     setShowPopup(false);
-    setShowModal(false);
-    navigate('/login');
-  };
-
-  // Permet au formulaire ProfilForm de mettre à jour le Header
-  const handleProfileUpdate = (updatedUser) => {
-    localStorage.setItem('user', JSON.stringify(updatedUser));
-    setUser(updatedUser);
-    setShowModal(false);
+    navigate('/Login');
   };
 
   return (
@@ -68,13 +58,13 @@ const Header = () => {
               <span className="username">{user.username}</span>
               {showPopup && (
                 <div className="profile-popup">
-                  <button
-                    type="button"
+                  <Link
+                    to="/profil"
                     className="profile-popup-link"
-                    onClick={() => setShowModal(true)}
+                    onClick={() => setShowPopup(false)}
                   >
                     Profil
-                  </button>
+                  </Link>
                   <button
                     type="button"
                     className="profile-popup-link logout"
@@ -92,15 +82,6 @@ const Header = () => {
           )}
         </div>
       </header>
-
-      {/* Modale du formulaire de profil */}
-      {showModal && (
-        <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-            <ProfilForm user={user} onUpdate={handleProfileUpdate} onLogout={handleLogout} />
-          </div>
-        </div>
-      )}
     </>
   );
 };
