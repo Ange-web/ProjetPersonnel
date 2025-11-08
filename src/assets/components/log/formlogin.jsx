@@ -36,15 +36,46 @@ function InputLogin(){
             }
 
             if (response.ok){
-                console.log("Connnexion réussi !");
+                console.log("Connexion réussie !");
+                
+                // Vérifier que les données utilisateur sont présentes
+                if (!data.user) {
+                    console.error("❌ Données utilisateur manquantes dans la réponse");
+                    alert("Erreur : données utilisateur non reçues du serveur");
+                    return;
+                }
 
-                localStorage.setItem("token",data.token);
-                localStorage.setItem("user",JSON.stringify(data.user));
-                console.log("📦 Stockage user :", JSON.stringify(data.user));
+                // Log détaillé pour déboguer
+                console.log("📦 Données reçues du serveur :", data);
+                console.log("👤 Objet user complet :", data.user);
+                console.log("📝 Prénom :", data.user.prenom);
+                console.log("📝 Nom :", data.user.nom);
+                console.log("👤 Username :", data.user.username);
+                console.log("📧 Email :", data.user.email);
+
+                // Stocker le token
+                if (data.token) {
+                    localStorage.setItem("token", data.token);
+                } else {
+                    console.warn("⚠️ Token non reçu du serveur");
+                }
+
+                // Stocker les données utilisateur (même si prenom/nom sont null)
+                const userData = {
+                    id: data.user.id,
+                    email: data.user.email,
+                    username: data.user.username,
+                    prenom: data.user.prenom || null,
+                    nom: data.user.nom || null
+                };
+                
+                localStorage.setItem("user", JSON.stringify(userData));
+                console.log("✅ Données stockées dans localStorage :", userData);
 
                 navigate("/");
             } else{
                 console.error("Erreur HTTP:", response.status, data);
+                alert(data.error || "Erreur lors de la connexion. Veuillez réessayer.");
             }
         }catch (error){
             console.error("Erreur lors de la requête :",error);
