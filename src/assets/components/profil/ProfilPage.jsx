@@ -119,7 +119,15 @@ const ProfilPage = () => {
         return;
       }
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/profile`, {
+      const apiUrl = `${import.meta.env.VITE_API_URL}/user/update`;
+      console.log('🔄 Tentative de mise à jour du profil vers:', apiUrl);
+      console.log('📤 Données envoyées:', {
+        prenom: editedData.prenom,
+        nom: editedData.nom,
+        username: editedData.username
+      });
+
+      const response = await fetch(apiUrl, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -132,15 +140,35 @@ const ProfilPage = () => {
         })
       });
 
-      const data = await response.json();
+      console.log('📥 Statut de la réponse:', response.status);
+      console.log('📥 URL de la réponse:', response.url);
+
+      // Gérer le cas où la réponse n'est pas du JSON (404 Not Found)
+      let data;
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        console.error('❌ Réponse non-JSON reçue:', text);
+        if (response.status === 404) {
+          alert('Route non trouvée (404). Vérifiez que la route PUT /user/update existe côté backend.');
+        } else {
+          alert(`Erreur serveur (${response.status}): ${text || 'Réponse invalide'}`);
+        }
+        setSaving(false);
+        return;
+      }
 
       if (response.ok) {
-        const updatedUser = {
+        // Si le backend renvoie les données mises à jour, les utiliser
+        const updatedUser = data.user || {
           ...user,
           prenom: editedData.prenom,
           nom: editedData.nom,
           username: editedData.username
         };
+        
         localStorage.setItem('user', JSON.stringify(updatedUser));
         setUser(updatedUser);
         setIsEditing(false);
@@ -148,17 +176,20 @@ const ProfilPage = () => {
         // Déclencher un événement pour mettre à jour le header
         window.dispatchEvent(new CustomEvent('userUpdated', { detail: updatedUser }));
         
+        console.log('✅ Profil mis à jour avec succès:', updatedUser);
         alert('Profil mis à jour avec succès !');
       } else {
         if (response.status === 401) {
           alert('Merci de vous connecter ou vous reconnecter afin d\'accéder à l\'outil.');
           navigate('/Login');
+        } else if (response.status === 404) {
+          alert('Route non trouvée (404). Vérifiez que la route PUT /user/update existe côté backend.');
         } else {
-          alert(data.error || 'Erreur lors de la mise à jour du profil.');
+          alert(data.error || data.message || `Erreur lors de la mise à jour du profil (${response.status}).`);
         }
       }
     } catch (error) {
-      console.error('Erreur lors de la mise à jour:', error);
+      console.error('❌ Erreur lors de la mise à jour:', error);
       alert('Erreur de connexion au serveur. Veuillez réessayer.');
     } finally {
       setSaving(false);
