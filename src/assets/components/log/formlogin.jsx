@@ -66,7 +66,8 @@ function InputLogin(){
                     email: data.user.email,
                     username: data.user.username,
                     prenom: data.user.prenom || null,
-                    nom: data.user.nom || null
+                    nom: data.user.nom || null,
+                    avatar_url: data.user.avatar_url || null
                 };
                 
                 localStorage.setItem("user", JSON.stringify(userData));
@@ -75,7 +76,8 @@ function InputLogin(){
                 navigate("/");
             } else{
                 console.error("Erreur HTTP:", response.status, data);
-                alert(data.error || "Erreur lors de la connexion. Veuillez réessayer.");
+                // Le backend renvoie 'message' au lieu de 'error'
+                alert(data.message || data.error || "Erreur lors de la connexion. Veuillez réessayer.");
             }
         }catch (error){
             console.error("Erreur lors de la requête :",error);
