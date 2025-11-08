@@ -17,28 +17,80 @@ const ProfilPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
+    const fetchUserData = async () => {
+      const token = localStorage.getItem('token');
 
-    if (!token || !storedUser) {
-      navigate('/Login');
-      return;
-    }
+      if (!token) {
+        navigate('/Login');
+        return;
+      }
 
-    try {
-      const parsedUser = JSON.parse(storedUser);
-      setUser(parsedUser);
-      setEditedData({
-        prenom: parsedUser.prenom || '',
-        nom: parsedUser.nom || '',
-        username: parsedUser.username || ''
-      });
-    } catch (err) {
-      console.error('Erreur lors du parsing de l\'utilisateur:', err);
-      navigate('/Login');
-    } finally {
-      setLoading(false);
-    }
+      try {
+        // Récupérer les données utilisateur depuis l'API avec le token
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/user/profile`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (response.status === 401) {
+          // Token invalide ou expiré
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          alert('Merci de vous connecter ou vous reconnecter afin d\'accéder à l\'outil.');
+          navigate('/Login');
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error('Erreur lors de la récupération des données utilisateur');
+        }
+
+        const data = await response.json();
+        
+        if (data.user) {
+          const userData = data.user;
+          setUser(userData);
+          setEditedData({
+            prenom: userData.prenom || '',
+            nom: userData.nom || '',
+            username: userData.username || ''
+          });
+          
+          // Mettre à jour localStorage avec les données à jour
+          localStorage.setItem('user', JSON.stringify(userData));
+          console.log('✅ Données utilisateur récupérées depuis l\'API :', userData);
+        } else {
+          throw new Error('Données utilisateur non trouvées dans la réponse');
+        }
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données utilisateur:', error);
+        // En cas d'erreur, essayer de récupérer depuis localStorage comme fallback
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+          try {
+            const parsedUser = JSON.parse(storedUser);
+            setUser(parsedUser);
+            setEditedData({
+              prenom: parsedUser.prenom || '',
+              nom: parsedUser.nom || '',
+              username: parsedUser.username || ''
+            });
+            console.warn('⚠️ Utilisation des données en cache (localStorage)');
+          } catch (err) {
+            navigate('/Login');
+          }
+        } else {
+          navigate('/Login');
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
   }, [navigate]);
 
   const handleEdit = () => {
