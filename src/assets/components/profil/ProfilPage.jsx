@@ -7,6 +7,13 @@ import './profil.css';
 const ProfilPage = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedData, setEditedData] = useState({
+    prenom: '',
+    nom: '',
+    username: ''
+  });
+  const [saving, setSaving] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +28,11 @@ const ProfilPage = () => {
     try {
       const parsedUser = JSON.parse(storedUser);
       setUser(parsedUser);
+      setEditedData({
+        prenom: parsedUser.prenom || '',
+        nom: parsedUser.nom || '',
+        username: parsedUser.username || ''
+      });
     } catch (err) {
       console.error('Erreur lors du parsing de l\'utilisateur:', err);
       navigate('/Login');
@@ -28,6 +40,74 @@ const ProfilPage = () => {
       setLoading(false);
     }
   }, [navigate]);
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    setEditedData({
+      prenom: user.prenom || '',
+      nom: user.nom || '',
+      username: user.username || ''
+    });
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        navigate('/Login');
+        return;
+      }
+
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/user/update`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          prenom: editedData.prenom,
+          nom: editedData.nom,
+          username: editedData.username
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        const updatedUser = {
+          ...user,
+          prenom: editedData.prenom,
+          nom: editedData.nom,
+          username: editedData.username
+        };
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        setUser(updatedUser);
+        setIsEditing(false);
+        
+        // Déclencher un événement pour mettre à jour le header
+        window.dispatchEvent(new CustomEvent('userUpdated', { detail: updatedUser }));
+        
+        alert('Profil mis à jour avec succès !');
+      } else {
+        if (response.status === 401) {
+          alert('Merci de vous connecter ou vous reconnecter afin d\'accéder à l\'outil.');
+          navigate('/Login');
+        } else {
+          alert(data.error || 'Erreur lors de la mise à jour du profil.');
+        }
+      }
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour:', error);
+      alert('Erreur de connexion au serveur. Veuillez réessayer.');
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -65,7 +145,7 @@ const ProfilPage = () => {
             </div>
             <div className="profil-info">
               <h1 className="profil-name">
-                {user.prenom} {user.nom}
+                {user.prenom || ''} {user.nom || ''}
               </h1>
               <p className="profil-username">@{user.username}</p>
               <p className="profil-email">{user.email}</p>
@@ -74,19 +154,76 @@ const ProfilPage = () => {
 
           <div className="profil-content">
             <div className="profil-section">
-              <h2 className="profil-section-title">Informations personnelles</h2>
+              <div className="profil-section-header">
+                <h2 className="profil-section-title">Informations personnelles</h2>
+                {!isEditing ? (
+                  <button 
+                    className="profil-edit-btn"
+                    onClick={handleEdit}
+                  >
+                    ✏️ Modifier
+                  </button>
+                ) : (
+                  <div className="profil-edit-actions">
+                    <button 
+                      className="profil-save-btn"
+                      onClick={handleSave}
+                      disabled={saving}
+                    >
+                      {saving ? 'Enregistrement...' : '💾 Enregistrer'}
+                    </button>
+                    <button 
+                      className="profil-cancel-btn"
+                      onClick={handleCancel}
+                      disabled={saving}
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                )}
+              </div>
               <div className="profil-details">
                 <div className="profil-detail-item">
                   <span className="profil-detail-label">Prénom :</span>
-                  <span className="profil-detail-value">{user.prenom || 'Non renseigné'}</span>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      className="profil-input"
+                      value={editedData.prenom}
+                      onChange={(e) => setEditedData({ ...editedData, prenom: e.target.value })}
+                      placeholder="Votre prénom"
+                    />
+                  ) : (
+                    <span className="profil-detail-value">{user.prenom || 'Non renseigné'}</span>
+                  )}
                 </div>
                 <div className="profil-detail-item">
                   <span className="profil-detail-label">Nom :</span>
-                  <span className="profil-detail-value">{user.nom || 'Non renseigné'}</span>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      className="profil-input"
+                      value={editedData.nom}
+                      onChange={(e) => setEditedData({ ...editedData, nom: e.target.value })}
+                      placeholder="Votre nom"
+                    />
+                  ) : (
+                    <span className="profil-detail-value">{user.nom || 'Non renseigné'}</span>
+                  )}
                 </div>
                 <div className="profil-detail-item">
                   <span className="profil-detail-label">Nom d'utilisateur :</span>
-                  <span className="profil-detail-value">{user.username}</span>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      className="profil-input"
+                      value={editedData.username}
+                      onChange={(e) => setEditedData({ ...editedData, username: e.target.value })}
+                      placeholder="Votre nom d'utilisateur"
+                    />
+                  ) : (
+                    <span className="profil-detail-value">{user.username}</span>
+                  )}
                 </div>
                 <div className="profil-detail-item">
                   <span className="profil-detail-label">Email :</span>

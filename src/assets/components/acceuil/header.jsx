@@ -11,17 +11,34 @@ const Header = () => {
 
   // Récupère l'utilisateur connecté depuis localStorage
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-  
-    if (storedUser && storedUser !== "undefined") {
-      try {
-        const parsed = JSON.parse(storedUser);
-        setUser(parsed);
-      } catch (err) {
-        console.error("Erreur JSON.parse sur user:", err);
-        localStorage.removeItem("user"); // nettoyage si corrompu
+    const loadUser = () => {
+      const storedUser = localStorage.getItem("user");
+    
+      if (storedUser && storedUser !== "undefined") {
+        try {
+          const parsed = JSON.parse(storedUser);
+          setUser(parsed);
+        } catch (err) {
+          console.error("Erreur JSON.parse sur user:", err);
+          localStorage.removeItem("user"); // nettoyage si corrompu
+        }
       }
-    }
+    };
+
+    loadUser();
+
+    // Écouter les mises à jour de l'utilisateur depuis la page profil
+    const handleUserUpdate = (event) => {
+      if (event.detail) {
+        setUser(event.detail);
+      }
+    };
+
+    window.addEventListener('userUpdated', handleUserUpdate);
+
+    return () => {
+      window.removeEventListener('userUpdated', handleUserUpdate);
+    };
   }, []);
   
 
