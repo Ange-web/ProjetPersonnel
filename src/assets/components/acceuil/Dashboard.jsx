@@ -16,9 +16,12 @@ const Dashboard = () => {
     const fetchStats = async () => {
       try {
         const token = localStorage.getItem('token');
+        const apiUrl = `${import.meta.env.VITE_API_URL}/stats`;
+        
+        console.log('📊 Récupération des statistiques depuis:', apiUrl);
         
         // Récupérer les statistiques depuis l'API
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/stats`, {
+        const response = await fetch(apiUrl, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -26,23 +29,28 @@ const Dashboard = () => {
           }
         });
 
+        console.log('📊 Statut de la réponse:', response.status);
+
         if (response.ok) {
           const data = await response.json();
+          console.log('📊 Données reçues:', data);
+          
           setStats({
-            totalScans: data.totalScans || 0,
-            urlScans: data.urlScans || 0,
-            ipScans: data.ipScans || 0,
-            portScans: data.portScans || 0,
-            exifScans: data.exifScans || 0,
-            totalUsers: data.totalUsers || 0,
+            totalScans: data.totalScans || data.total_scans || 0,
+            urlScans: data.urlScans || data.url_scans || 0,
+            ipScans: data.ipScans || data.ip_scans || 0,
+            portScans: data.portScans || data.port_scans || 0,
+            exifScans: data.exifScans || data.exif_scans || 0,
+            totalUsers: data.totalUsers || data.total_users || 0,
             loading: false
           });
         } else {
+          console.warn('⚠️ Erreur lors de la récupération des stats:', response.status);
           // Si l'API n'est pas disponible, utiliser des valeurs par défaut
           setStats(prev => ({ ...prev, loading: false }));
         }
       } catch (error) {
-        console.error('Erreur lors de la récupération des statistiques:', error);
+        console.error('❌ Erreur lors de la récupération des statistiques:', error);
         setStats(prev => ({ ...prev, loading: false }));
       }
     };
