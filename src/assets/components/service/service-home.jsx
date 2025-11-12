@@ -5,10 +5,9 @@ import './ServiceCard.css';
 
 
 const Servicehome = () =>(
-    <div>
+    <div className="service-page">
         <Header/>
         <Serviceoption/>
-        
     </div>
 );
 

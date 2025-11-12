@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-const ServiceCard = ({ title, description, buttonLabel, redirectPath }) => {
+const ServiceCard = ({ title, description, buttonLabel, redirectPath, iconType, isPrimary = false }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -13,13 +13,10 @@ const ServiceCard = ({ title, description, buttonLabel, redirectPath }) => {
 
   return (
     <div className="card">
-      <div className="card-header">
-        <div className="card-icon"></div>
-        <div className="card-title">{title}</div>
-      </div>
-      <div className="card-description">{description}</div>
-      <div className="card-footer">
-        <button className="card-button" onClick={handleClick}>
+      <div className="card-content">
+        <h5 className="card-title">{title}</h5>
+        <p className="card-description">{description}</p>
+        <button className={`card-button ${isPrimary ? 'card-button-primary' : 'card-button-secondary'}`} onClick={handleClick}>
           {buttonLabel}
         </button>
       </div>

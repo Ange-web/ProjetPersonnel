@@ -25,16 +25,13 @@ const Parcours = () => {
           <div className="about-text">
             <h1>À Propos de Moi, <span className="highlight">Ange Nono</span></h1>
             <p>
-              Je suis un développeur Full-Stack en formation à Ada Tech School (Paris), 
-              passionné par la cybersécurité et l'automatisation DevSecOps.
+              Actuellement en préparation de mon Titre RNCP niveau 6 – Concepteur Développeur d'Applications (Bac+3) à Ada Tech School, je suis avant tout motivé par l'envie de découvrir, d'apprendre et de progresser dans le développement web.
             </p>
             <p>
-              J'ai fondé le projet NSPY, une plateforme rendant accessibles et compréhensibles 
-              divers outils de sécurité (Nmap, Nuclei, ExifTool, etc.) pour tous, même sans connaissances techniques.
+              Ce qui me passionne, c'est de comprendre comment les choses fonctionnent, de résoudre des problèmes concrets et de créer des outils utiles. Chaque projet est pour moi une opportunité de me challenger, d'explorer de nouvelles approches et de consolider mes connaissances.
             </p>
-            <p className="highlight-text">
-              Je suis actuellement à la recherche d'une alternance de 12 mois dès 
-              maintenant, avec un rythme 4 jours en entreprise / 1 jour en école.
+            <p>
+              Autonome, curieux et toujours motivé à apprendre de nouvelles stacks, je considère le développement comme un métier d'apprentissage constant. Mon objectif est de rejoindre une équipe innovante où je pourrai apporter mes compétences, tout en continuant à progresser au contact de développeurs expérimentés et de projets à fort impact.
             </p>
           </div>
         </div>
