@@ -31,13 +31,10 @@ const Parcours = () => {
           <div className="about-text">
             <h1>À Propos de Moi, <span className="highlight">Ange Nono</span></h1>
             <p>
-              Actuellement en préparation de mon Titre RNCP niveau 6 – Concepteur Développeur d'Applications (Bac+3) à Ada Tech School, je suis avant tout motivé par l'envie de découvrir, d'apprendre et de progresser dans le développement web.
+              Actuellement en préparation de mon <strong>Titre RNCP niveau 6 – Concepteur Développeur d'Applications (Bac+3)</strong> à <strong>Ada Tech School</strong>, je suis animé par une réelle volonté de découvrir, d'apprendre et de progresser dans le développement web.
             </p>
             <p>
-              Ce qui me passionne, c'est de comprendre comment les choses fonctionnent, de résoudre des problèmes concrets et de créer des outils utiles. Chaque projet est pour moi une opportunité de me challenger, d'explorer de nouvelles approches et de consolider mes connaissances.
-            </p>
-            <p>
-              Autonome, curieux et toujours motivé à apprendre de nouvelles stacks, je considère le développement comme un métier d'apprentissage constant. Mon objectif est de rejoindre une équipe innovante où je pourrai apporter mes compétences, tout en continuant à progresser au contact de développeurs expérimentés et de projets à fort impact.
+              Passionné par la création d'outils utiles et la résolution de problèmes concrets, chaque projet représente pour moi une occasion de me challenger. Je souhaite intégrer, dans le cadre d'une alternance, une équipe innovante où je pourrai non seulement mettre à profit mes compétences, mais aussi apprendre des personnes avec qui je collaborerai, que ce soit aujourd'hui ou dans le futur, car je considère le développement comme un <strong>métier d'apprentissage permanent</strong>.
             </p>
             <p className="highlight-text">
               Je suis actuellement à la recherche d'une alternance de 12 mois dès 

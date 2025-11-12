@@ -27,8 +27,6 @@ const Footer = () => {
           <ul className="footer-links">
             <li><a href="#">Évaluation de sécurité</a></li>
             <li><a href="#">Audit de vulnérabilités</a></li>
-            <li><a href="#">Formation cybersécurité</a></li>
-            <li><a href="#">Support technique</a></li>
           </ul>
         </div>
         
