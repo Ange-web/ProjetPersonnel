@@ -33,6 +33,10 @@ const Parcours = () => {
             <p>
               Autonome, curieux et toujours motivé à apprendre de nouvelles stacks, je considère le développement comme un métier d'apprentissage constant. Mon objectif est de rejoindre une équipe innovante où je pourrai apporter mes compétences, tout en continuant à progresser au contact de développeurs expérimentés et de projets à fort impact.
             </p>
+            <p className="highlight-text">
+              Je suis actuellement à la recherche d'une alternance de 12 mois dès 
+              maintenant, avec un rythme 4 jours en entreprise / 1 jour en école.
+            </p>
           </div>
         </div>
       </section>
