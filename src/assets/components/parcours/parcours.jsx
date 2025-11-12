@@ -25,7 +25,7 @@ const Parcours = () => {
               download="Curriculum_vitae_Ange_Nono.pdf"
               className="cv-download-btn"
             >
-              📄 Télécharger mon CV
+              Télécharger mon CV 
             </a>
           </div>
           <div className="about-text">
