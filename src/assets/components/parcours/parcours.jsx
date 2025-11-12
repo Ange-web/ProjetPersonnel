@@ -13,14 +13,20 @@ const Parcours = () => {
       {/* Section À propos de moi */}
       <section className="about-section">
         <div className="about-content">
-          <div className="profile-image" style={{ display: 'flex', justifyContent: 'center' }}>
-            <div className="profile-placeholder" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div className="profile-image">
+            <div className="profile-placeholder">
               <img
                 src={profileImage}
                 alt="Photo de profil d'Ange Nono"
-                style={{ width: '180px', height: '220px', borderRadius: '8px', objectFit: 'cover' }}
               />
             </div>
+            <a
+              href="/Curriculum_vitae_Ange_Nono.pdf"
+              download="Curriculum_vitae_Ange_Nono.pdf"
+              className="cv-download-btn"
+            >
+              📄 Télécharger mon CV
+            </a>
           </div>
           <div className="about-text">
             <h1>À Propos de Moi, <span className="highlight">Ange Nono</span></h1>
