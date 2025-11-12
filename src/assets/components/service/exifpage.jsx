@@ -8,13 +8,15 @@ function ExifPage() {
   const [metadata, setMetadata] = useState(null);
   const [tag, setTag] = useState("");
   const [value, setValue] = useState("");
-  const [filename, setFilename] = useState("");
-  const NOT_AUTH_MSG = "Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.";
+  const [storedName, setStoredName] = useState("");
+  const [downloadUrl, setDownloadUrl] = useState("");
+  const NOT_AUTH_MSG = "Merci de vous connecter ou vous reconnecter afin d'accéder à l'outil.";
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
-    setPreviewUrl(URL.createObjectURL(selectedFile));
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreviewUrl(objectUrl);
   };
 
   const handleUpload = async (e) => {
@@ -31,11 +33,15 @@ function ExifPage() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setMetadata(res.data.metadata);
-      const returnedFile = res.data.file;
-      const safeName = typeof returnedFile === 'string'
-        ? returnedFile.split('\\').pop().split('/').pop()
-        : '';
-      setFilename(safeName);
+      const name = res.data.storedName || res.data.file;
+      setStoredName(name);
+      
+      if (res.data.imageUrl) {
+        setPreviewUrl(`${import.meta.env.VITE_API_URL}${res.data.imageUrl}`);
+      }
+      if (res.data.downloadUrl) {
+        setDownloadUrl(`${import.meta.env.VITE_API_URL}${res.data.downloadUrl}`);
+      }
     } catch (err) {
       console.error(err);
       if (err?.response?.status === 401) alert("Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.");
@@ -47,15 +53,24 @@ function ExifPage() {
     try {
       const token = localStorage.getItem("token");
       if (!token) { alert(NOT_AUTH_MSG); return; }
-      await axios.post(
+      const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/scan/exif/edit`,
         {
-          file: filename,
+          storedName,
           tag,
           value,
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
+      
+      if (res.data.imageUrl) {
+        const ts = Date.now();
+        setPreviewUrl(`${import.meta.env.VITE_API_URL}${res.data.imageUrl}?ts=${ts}`);
+      }
+      if (res.data.downloadUrl) {
+        setDownloadUrl(`${import.meta.env.VITE_API_URL}${res.data.downloadUrl}`);
+      }
+      
       alert("✅ Métadonnée modifiée");
     } catch (err) {
       console.error(err);
@@ -65,16 +80,30 @@ function ExifPage() {
   };
 
   const handleDelete = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) { 
+      alert("Vous devez être connecté pour supprimer les métadonnées."); 
+      return; 
+    }
+
     try {
-      const token = localStorage.getItem("token");
-      if (!token) { alert(NOT_AUTH_MSG); return; }
-      await axios.post(
+      const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/scan/exif/delete`,
-        {
-          file: filename,
-        },
+        { storedName },
         { headers: { Authorization: `Bearer ${token}` } }
       );
+      
+      if (data.refreshUrl) {
+        setPreviewUrl(`${import.meta.env.VITE_API_URL}${data.refreshUrl}`);
+      } else if (data.imageUrl) {
+        const ts = Date.now();
+        setPreviewUrl(`${import.meta.env.VITE_API_URL}${data.imageUrl}?ts=${ts}`);
+      }
+      
+      if (data.downloadUrl) {
+        setDownloadUrl(`${import.meta.env.VITE_API_URL}${data.downloadUrl}`);
+      }
+      
       alert("✅ Métadonnées supprimées");
     } catch (err) {
       console.error(err);
@@ -84,17 +113,29 @@ function ExifPage() {
   };
 
   const handleDownload = async () => {
+    if (!storedName) { 
+      alert("Aucun fichier à télécharger."); 
+      return; 
+    }
+    
+    const token = localStorage.getItem("token");
+    if (!token) { 
+      alert("Vous devez être connecté pour télécharger."); 
+      return; 
+    }
+
     try {
-      if (!filename) { alert("Aucun fichier à télécharger."); return; }
-      const token = localStorage.getItem("token");
-      if (!token) { alert(NOT_AUTH_MSG); return; }
-
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/scan/exif/download/${encodeURIComponent(filename)}`, {
+      const url = downloadUrl || `${import.meta.env.VITE_API_URL}/scan/exif/download/${encodeURIComponent(storedName)}`;
+      
+      const res = await fetch(url, {
         method: 'GET',
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` }
       });
-
-      if (res.status === 401) { alert(NOT_AUTH_MSG); return; }
+      
+      if (res.status === 401) { 
+        alert(NOT_AUTH_MSG); 
+        return; 
+      }
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         alert(data.error || 'Erreur lors du téléchargement.');
@@ -102,17 +143,17 @@ function ExifPage() {
       }
 
       const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
+      const url_blob = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url;
-      a.download = filename || 'fichier-modifie';
+      a.href = url_blob;
+      a.download = storedName || 'fichier-modifie';
       document.body.appendChild(a);
       a.click();
-      a.remove();
-      window.URL.revokeObjectURL(url);
+      window.URL.revokeObjectURL(url_blob);
+      document.body.removeChild(a);
     } catch (err) {
-      console.error(err);
-      alert('Erreur lors du téléchargement.');
+      console.error("Erreur lors du téléchargement:", err);
+      alert("❌ Erreur lors du téléchargement");
     }
   };
 
@@ -131,7 +172,13 @@ function ExifPage() {
 
       {previewUrl && (
         <div className="mb-4">
-          <img src={previewUrl} alt="preview" className="max-w-full h-auto rounded shadow" />
+          <img 
+            src={previewUrl} 
+            alt="Aperçu" 
+            className="max-w-full h-auto rounded shadow" 
+            style={{ maxWidth: "500px", maxHeight: "500px" }}
+            key={previewUrl}
+          />
         </div>
       )}
 
@@ -170,14 +217,16 @@ function ExifPage() {
             Supprimer toutes les métadonnées
           </button>
 
-          <div className="mt-4">
-            <button
-              onClick={handleDownload}
-              className="px-4 py-2 bg-indigo-600 text-white rounded"
-            >
-              Télécharger le fichier modifié
-            </button>
-          </div>
+          {storedName && (
+            <div className="mt-4">
+              <button
+                onClick={handleDownload}
+                className="px-4 py-2 bg-indigo-600 text-white rounded"
+              >
+                Télécharger le fichier modifié
+              </button>
+            </div>
+          )}
         </div>
       )}
       </div>
