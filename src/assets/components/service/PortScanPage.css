@@ -1,5 +1,12 @@
+.service-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .portscan-wrapper {
-    min-height: 100vh;
+    flex: 1;
+    min-height: auto;
     background: #f3f4f6;
     padding: 2rem;
     display: flex;

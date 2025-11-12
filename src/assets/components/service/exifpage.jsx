@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Header from "../acceuil/header";
+import Footer from "../acceuil/footer";
 
 function ExifPage() {
   const [file, setFile] = useState(null);
@@ -117,8 +118,9 @@ function ExifPage() {
   };
 
   return (
-    <div className="p-4 max-w-2xl mx-auto">
+    <div className="service-page-wrapper">
       <Header/>
+      <div className="p-4 max-w-2xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Éditeur de Métadonnées</h1>
 
       <form onSubmit={handleUpload} className="mb-4">
@@ -179,6 +181,8 @@ function ExifPage() {
           </div>
         </div>
       )}
+      </div>
+      <Footer />
     </div>
   );
 }

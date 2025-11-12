@@ -629,6 +629,16 @@ body {
     flex-direction: column;
   }
 
+  .service-page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-page-wrapper > div:not(.footer) {
+    flex: 1;
+  }
+
   .footer {
     background-color: #2d3748;
     color: #e2e8f0;

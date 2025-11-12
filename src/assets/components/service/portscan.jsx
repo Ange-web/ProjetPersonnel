@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Header from "../acceuil/header";
+import Footer from "../acceuil/footer";
 import './PortScanPage.css';
 
 const PortScanPage = () => {
@@ -64,7 +65,7 @@ const PortScanPage = () => {
   };
 
   return (
-    <div>
+    <div className="service-page-wrapper">
       <Header />
       <div className="portscan-wrapper">
         <h1 className="portscan-title">🔍 Scanner des ports TCP</h1>
@@ -141,6 +142,7 @@ const PortScanPage = () => {
           </div>
         )}
       </div>
+      <Footer />
     </div>);  
 };
 

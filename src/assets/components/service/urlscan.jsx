@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../acceuil/header';
+import Footer from '../acceuil/footer';
 import './scanPage.css';
 
 const ScanPage = () => {
@@ -75,9 +76,9 @@ const ScanPage = () => {
   };
 
   return (
-    <div>
+    <div className="service-page-wrapper">
       <Header />
-    <div className="scan-container">
+      <div className="scan-container">
       <h1 className="scan-title">🔍 Scanner un site web avec Nuclei</h1>
 
       <form onSubmit={handleScan} className="scan-form">
@@ -125,10 +126,12 @@ const ScanPage = () => {
       )}
 
       {!loading && !error && results.length === 0 && (
-        <p>Aucun résultat pour l’instant. Essayez avec un autre site.</p>
+        <p>Aucun résultat pour l'instant. Essayez avec un autre site.</p>
       )}
+      </div>
+      <Footer />
     </div>
-  </div>);
+  );
 };
 
 export default ScanPage;

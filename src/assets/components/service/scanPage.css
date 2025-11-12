@@ -1,6 +1,11 @@
-/* scanPage.css */
+.service-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 .scan-container {
+  flex: 1;
     max-width: 700px;
     margin: 3rem auto;
     padding: 2rem;
