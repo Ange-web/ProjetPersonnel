@@ -7,27 +7,29 @@ import { Link, useNavigate } from 'react-router-dom';
 const Header = () => {
   const [user, setUser] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isFullWidth, setIsFullWidth] = useState(false);
   const navigate = useNavigate();
 
-  // Récupère l'utilisateur connecté depuis localStorage
   useEffect(() => {
     const loadUser = () => {
-      const storedUser = localStorage.getItem("user");
-    
-      if (storedUser && storedUser !== "undefined") {
-        try {
-          const parsed = JSON.parse(storedUser);
-          setUser(parsed);
-        } catch (err) {
-          console.error("Erreur JSON.parse sur user:", err);
-          localStorage.removeItem("user"); // nettoyage si corrompu
-        }
+    const storedUser = localStorage.getItem("user");
+  
+    if (storedUser && storedUser !== "undefined") {
+      try {
+        const parsed = JSON.parse(storedUser);
+        setUser(parsed);
+      } catch (err) {
+        console.error("Erreur JSON.parse sur user:", err);
+        localStorage.removeItem("user");
       }
+    }
     };
 
     loadUser();
 
-    // Écouter les mises à jour de l'utilisateur depuis la page profil
     const handleUserUpdate = (event) => {
       if (event.detail) {
         setUser(event.detail);
@@ -40,6 +42,25 @@ const Header = () => {
       window.removeEventListener('userUpdated', handleUserUpdate);
     };
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
   
 
   const handleLogout = () => {
@@ -50,9 +71,18 @@ const Header = () => {
     navigate('/Login');
   };
 
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.body.classList.toggle('dark-mode');
+  };
+
+  const toggleFullWidth = () => {
+    setIsFullWidth(!isFullWidth);
+  };
+
   return (
     <>
-      <header className="header">
+      <header className={`header ${isVisible ? 'header-visible' : 'header-hidden'} ${isDarkMode ? 'header-dark' : ''} ${isFullWidth ? 'header-fullwidth' : ''}`}>
         <div className="logo">
           <img src={logo} alt="Logo NSPY" className='logo-img' />
         </div>
@@ -65,7 +95,22 @@ const Header = () => {
         </nav>
 
         <div className="header-actions">
-          {/* Si utilisateur connecté */}
+          <button 
+            className="header-toggle-btn" 
+            onClick={toggleDarkMode}
+            title={isDarkMode ? "Mode clair" : "Mode sombre"}
+            aria-label={isDarkMode ? "Activer le mode clair" : "Activer le mode sombre"}
+          >
+            {isDarkMode ? '☀️' : '🌙'}
+          </button>
+          <button 
+            className="header-toggle-btn" 
+            onClick={toggleFullWidth}
+            title={isFullWidth ? "Navbar flottante" : "Navbar pleine largeur"}
+            aria-label={isFullWidth ? "Activer navbar flottante" : "Activer navbar pleine largeur"}
+          >
+            {isFullWidth ? '📌' : '🔓'}
+          </button>
           {user ? (
             <div
               className="user-info"
@@ -80,7 +125,7 @@ const Header = () => {
                     className="profile-popup-link"
                     onClick={() => setShowPopup(false)}
                   >
-                    Profil
+                  Profil
                   </Link>
                   <button
                     type="button"

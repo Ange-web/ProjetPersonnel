@@ -10,7 +10,6 @@ const Parcours = () => {
     <div>
       <Header />
       
-      {/* Section À propos de moi */}
       <section className="about-section">
         <div className="about-content">
           <div className="profile-image">
@@ -44,11 +43,9 @@ const Parcours = () => {
         </div>
       </section>
 
-      {/* Section Formation & Parcours / Expériences */}
       <section className="formation-experiences-section">
         <div className="container">
           <div className="formation-experiences-grid">
-            {/* Colonne gauche - Formation & Parcours */}
             <div className="formation-column">
               <h2>Formation & Parcours</h2>
               <div className="formation-cards">
@@ -73,10 +70,8 @@ const Parcours = () => {
               </div>
             </div>
 
-            {/* Barre de séparation */}
             <div className="separator-bar"></div>
 
-            {/* Colonne droite - Expériences Professionnelles & Associatives */}
             <div className="experiences-column">
               <h2>Expériences Professionnelles & Associatives</h2>
               <div className="experiences-list">
@@ -103,7 +98,6 @@ const Parcours = () => {
         </div>
       </section>
 
-      {/* Section Projets Académiques & Personnels */}
       <section className="projects-section">
         <div className="container">
           <h2>Projets Académiques & Personnels</h2>
@@ -145,7 +139,6 @@ const Parcours = () => {
         </div>
       </section>
 
-      {/* Section Objectifs */}
       <section className="objectives-section">
         <div className="container">
           <h2>Objectifs</h2>
