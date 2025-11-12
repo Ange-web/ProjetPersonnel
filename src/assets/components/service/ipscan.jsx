@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Header from "../acceuil/header";
-import Footer from "../acceuil/footer";
 import './IpPage.css'
 
 const IpPage = () => {
@@ -53,7 +52,6 @@ const IpPage = () => {
           {ip && <p className="ip-address">{ip}</p>}
         </div>
       </div>
-      <Footer />
     </div>);  
 };
 

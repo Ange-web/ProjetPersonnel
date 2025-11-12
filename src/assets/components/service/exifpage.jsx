@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Header from "../acceuil/header";
-import Footer from "../acceuil/footer";
 
 function ExifPage() {
   const [file, setFile] = useState(null);
@@ -182,7 +181,6 @@ function ExifPage() {
         </div>
       )}
       </div>
-      <Footer />
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Header from '../acceuil/header';
-import Footer from '../acceuil/footer';
 import './scanPage.css';
 
 const ScanPage = () => {
@@ -129,7 +128,6 @@ const ScanPage = () => {
         <p>Aucun résultat pour l'instant. Essayez avec un autre site.</p>
       )}
       </div>
-      <Footer />
     </div>
   );
 };
