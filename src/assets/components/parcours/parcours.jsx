@@ -47,57 +47,60 @@ const Parcours = () => {
         </div>
       </section>
 
-      {/* Section Formation & Parcours */}
-      <section className="formation-section">
+      {/* Section Formation & Parcours / Expériences */}
+      <section className="formation-experiences-section">
         <div className="container">
-          <h2>Formation & Parcours</h2>
-          <div className="formation-grid">
-            <div className="formation-card">
-              <div className="formation-logo">
-                <img src={adatechLogo} alt="Ada Tech School" className="school-logo" />
+          <div className="formation-experiences-grid">
+            {/* Colonne gauche - Formation & Parcours */}
+            <div className="formation-column">
+              <h2>Formation & Parcours</h2>
+              <div className="formation-cards">
+                <div className="formation-card">
+                  <div className="formation-icon">
+                    <img src={adatechLogo} alt="Ada Tech School" className="school-logo" />
+                  </div>
+                  <div className="formation-content">
+                    <h3>Ada Tech School – Paris</h3>
+                    <p>Formation en développement Full-Stack (React, Node.js, Express, PostgreSQL, Tailwind, JWT, bcrypt). Approche agile, projets collaboratifs et apprentissage par la pratique.</p>
+                  </div>
+                </div>
+                <div className="formation-card">
+                  <div className="formation-icon">
+                    <img src={selfLearningIcon} alt="Apprentissage autonome" className="school-logo" />
+                  </div>
+                  <div className="formation-content">
+                    <h3>Apprentissage autonome</h3>
+                    <p>Développement de projet personnel (NSPY). Veille technologique et formation continue en développement fullstack. Pratique des outils de sécurité (Nmap, Nuclei, ExifTool).</p>
+                  </div>
+                </div>
               </div>
-              <h3>Ada Tech School – Paris</h3>
-              <ul>
-                <li>Formation en développement Full-Stack (React, Node.js, Express, PostgreSQL, Tailwind, JWT, bcrypt)</li>
-                <li>Approche agile, projets collaboratifs et apprentissage par la pratique</li>
-              </ul>
             </div>
-            <div className="formation-card">
-              <div className="formation-logo">
-                <img src={selfLearningIcon} alt="Apprentissage autonome" className="school-logo" />
-              </div>
-              <h3>Apprentissage autonome</h3>
-              <ul>
-                <li>Développement de projet personnel (NSPY)</li>
-                <li>Veille technologique et formation continue en cybersécurité</li>
-                <li>Pratique des outils de sécurité (Nmap, Nuclei, ExifTool)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Section Expériences Professionnelles & Associatives */}
-      <section className="projects-section">
-        <div className="container">
-          <h2>Expériences Professionnelles & Associatives</h2>
-          <div className="projects-grid">
-            <div className="project-card">
-              <h3>Développeur Fullstack — Depuis novembre 2025</h3>
-              <p><strong>A&B PROJECT-EE </strong></p>
-              <p>
-                Engagé au sein de l’association afin de renforcer mes compétences techniques et approfondir mes
-                connaissances en cybersécurité à travers des projets réels et porteurs de sens.
-              </p>
-            </div>
-            <div className="project-card">
-              <h3>Développeur Fullstack — Depuis septembre 2025</h3>
-              <p><strong>Adess </strong></p>
-              <p>
-                Engagement associatif dans le but de développer mes compétences pratiques, enrichir mon expérience terrain
-                et renforcer mes aptitudes en organisation, communication et travail d’équipe, tout en contribuant à des
-                projets solidaires.
-              </p>
+            {/* Barre de séparation */}
+            <div className="separator-bar"></div>
+
+            {/* Colonne droite - Expériences Professionnelles & Associatives */}
+            <div className="experiences-column">
+              <h2>Expériences Professionnelles & Associatives</h2>
+              <div className="experiences-list">
+                <div className="experience-card">
+                  <h3>Développeur Fullstack</h3>
+                  <p className="experience-subtitle">A&B PROJECT-EE — Depuis novembre 2025</p>
+                  <p className="experience-description">
+                    Engagé au sein de l'association afin de renforcer mes compétences techniques et approfondir mes
+                    connaissances en cybersécurité à travers des projets réels et porteurs de sens.
+                  </p>
+                </div>
+                <div className="experience-card">
+                  <h3>Développeur Fullstack</h3>
+                  <p className="experience-subtitle">Adess — Depuis septembre 2025</p>
+                  <p className="experience-description">
+                    Engagement associatif dans le but de développer mes compétences pratiques, enrichir mon expérience terrain
+                    et renforcer mes aptitudes en organisation, communication et travail d'équipe, tout en contribuant à des
+                    projets solidaires.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -110,30 +113,35 @@ const Parcours = () => {
           <div className="timeline">
             <div className="timeline-line"></div>
             <div className="timeline-dot active"></div>
-            <div className="timeline-dot"></div>
+            <div className="timeline-dot active"></div>
+            <div className="timeline-dot active"></div>
             <div className="timeline-dot"></div>
           </div>
           <div className="projects-grid">
             <div className="project-card">
               <h3>NSPY – Plateforme de cybersécurité</h3>
               <p>Interface web (React + Node/Express) centralisant des outils comme Nmap, Nuclei, ExifTool, etc.</p>
+              <a href="https://projet-personnel-rust.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-btn">
+                Voir le projet
+              </a>
             </div>
             <div className="project-card">
               <h3>Adalicious – Application de gestion de restaurant</h3>
               <p>Projet full-stack avec interface client & cuisine, API CRUD et base PostgreSQL.</p>
-              <a href="https://adalicious-front.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-link">
-                Voir le projet →
+              <a href="https://adalicious-front.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-btn">
+                Voir le projet
               </a>
             </div>
             <div className="project-card">
               <h3>Clinique Compassion 3S – Site médical</h3>
               <p>Site vitrine moderne avec prise de rendez-vous, design UX et charte graphique (bleu & orange).</p>
+              <button className="project-btn">Voir le projet</button>
             </div>
             <div className="project-card">
               <h3>Möbel – E-commerce de meubles</h3>
               <p>Application de vente en ligne (React + PostgreSQL) avec gestion des utilisateurs et catalogue produits.</p>
-              <a href="https://moble-front.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-link">
-                Voir le projet →
+              <a href="https://moble-front.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-btn">
+                Voir le projet
               </a>
             </div>
           </div>
@@ -144,19 +152,21 @@ const Parcours = () => {
       <section className="objectives-section">
         <div className="container">
           <h2>Objectifs</h2>
-          <div className="objectives-list">
-            <div className="objective-item">
-              <div className="objective-icon"></div>
-              <p>Développer mes compétences en Full-Stack et Cybersécurité</p>
-            </div>
-            <div className="objective-item">
-              <div className="objective-icon"></div>
-              <p>Intégrer une équipe tech en alternance pour monter en expertise</p>
-            </div>
-            <div className="objective-item">
-              <div className="objective-icon"></div>
-              <p>Continuer à construire des solutions utiles et accessibles au grand public</p>
-            </div>
+          <div className="objectives-container">
+            <ul className="objectives-list">
+              <li className="objective-item">
+                <span className="objective-check">✓</span>
+                <span>Développer mes compétences en Full-Stack et Cybersécurité</span>
+              </li>
+              <li className="objective-item">
+                <span className="objective-check">✓</span>
+                <span>Intégrer une équipe tech en alternance pour monter en expertise</span>
+              </li>
+              <li className="objective-item">
+                <span className="objective-check">✓</span>
+                <span>Continuer à construire des solutions utiles et accessibles au grand public</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
