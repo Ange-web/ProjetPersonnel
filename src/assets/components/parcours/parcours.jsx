@@ -64,7 +64,7 @@ const Parcours = () => {
                   </div>
                   <div className="formation-content">
                     <h3>Apprentissage autonome</h3>
-                    <p>Développement de projet personnel (NSPY). Veille technologique et formation continue en développement fullstack. Pratique des outils de sécurité (Nmap, Nuclei, ExifTool).</p>
+                    <p>Développement de mon projet NSPY, avec une progression continue en fullstack. J'apprends de nouvelles technologies comme Django, Python, Swift et Next.js, et je maîtrise déjà le déploiement sur AWS ainsi que l'auto-hébergement sur serveur Linux personnel (mise en place, configuration et déploiement).</p>
                   </div>
                 </div>
               </div>
