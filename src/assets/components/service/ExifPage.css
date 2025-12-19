@@ -1,0 +1,227 @@
+.service-page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #0f172a;
+    background-image: radial-gradient(at 0% 0%, hsla(192, 100%, 25%, 0.4) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(260, 100%, 20%, 0.4) 0px, transparent 50%);
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+
+.exif-page {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+.exif-container {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    padding: 2.5rem;
+    max-width: 800px;
+    width: 100%;
+}
+
+
+.exif-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.title-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.exif-subtitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #38bdf8;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+
+.exif-upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 0.5rem;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.exif-file-input {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+}
+
+.exif-file-input::file-selector-button {
+    background: #334155;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: all 0.2s;
+}
+
+.exif-file-input::file-selector-button:hover {
+    background: #475569;
+}
+
+
+.exif-preview-wrapper {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.exif-preview-img {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.exif-data-box {
+    background: rgba(15, 23, 42, 0.8);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    color: #a5f3fc;
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+
+.exif-edit-controls {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+}
+
+.exif-input {
+    background-color: #1e293b;
+    color: white;
+    border: 1px solid #475569;
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    flex: 1;
+    min-width: 150px;
+    outline: none;
+}
+
+.exif-input:focus {
+    border-color: #2dd4bf;
+    box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.2);
+}
+
+
+.exif-btn {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: white;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #00dfc4, #007cf0);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.1);
+}
+
+.btn-success {
+    background: linear-gradient(to right, #10b981, #059669);
+}
+
+.btn-success:hover {
+    background: #059669;
+}
+
+.btn-danger {
+    background: linear-gradient(to right, #ef4444, #b91c1c);
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.btn-download {
+    background: linear-gradient(to right, #6366f1, #4f46e5);
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.75rem;
+}
+
+.btn-download:hover {
+    background: #4338ca;
+}
+
+
+.exif-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+@media (max-width: 640px) {
+    .exif-page {
+        padding: 1rem;
+    }
+
+    .exif-container {
+        padding: 1.5rem;
+    }
+
+    .exif-edit-controls {
+        flex-direction: column;
+    }
+
+    .exif-input {
+        width: 100%;
+    }
+
+    .exif-btn {
+        width: 100%;
+    }
+}
+
+.btn-full {
+    width: 100% !important;
+}

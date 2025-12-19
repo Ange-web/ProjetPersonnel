@@ -1,0 +1,675 @@
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+:root {
+
+    --c-bg: #020617;
+    --c-card-bg: rgba(15, 23, 42, 0.6);
+    --c-border: #1e293b;
+    --c-text-primary: #ffffff;
+    --c-text-secondary: #94a3b8;
+    --c-text-muted: #64748b;
+
+    --c-accent: #3b82f6;
+
+    --c-success: #10b981;
+
+    --c-warning: #f59e0b;
+
+    --c-danger: #f43f5e;
+
+
+
+    --blur: blur(12px);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-glow: 0 0 15px rgba(59, 130, 246, 0.2);
+
+
+    --sidebar-width: 280px;
+    --header-height: 80px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--c-bg);
+    color: var(--c-text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+.nspy-layout {
+    display: flex;
+    height: 100vh;
+    margin-top: 0;
+    overflow: hidden;
+    padding-top: 0;
+}
+
+
+.nspy-sidebar {
+    width: var(--sidebar-width);
+    background: rgba(2, 6, 23, 0.95);
+    border-right: 1px solid var(--c-border);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 1.5rem 2rem 1.5rem;
+    flex-shrink: 0;
+    z-index: 20;
+
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nspy-logo {
+    margin-bottom: 3rem;
+}
+
+.nspy-logo h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.5px;
+}
+
+.nspy-logo span {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--c-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+.nspy-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nspy-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    color: var(--c-text-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nspy-nav-item:hover {
+    background: rgba(255, 255, 255, 0.03);
+    color: white;
+}
+
+.nspy-nav-item.active {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--c-accent);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.nspy-profile {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--c-border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nspy-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #1e293b;
+    border: 2px solid #334155;
+}
+
+.nspy-profile-info h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.nspy-profile-info span {
+    font-size: 0.75rem;
+    color: var(--c-accent);
+}
+
+
+.nspy-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent 40%);
+    padding-top: 10px;
+    width: 100%;
+
+}
+
+
+.nspy-header {
+    height: var(--header-height);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--c-border);
+    backdrop-filter: var(--blur);
+    z-index: 5;
+    flex-shrink: 0;
+
+}
+
+.nspy-header-mobile-toggle {
+    display: none;
+
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.nspy-search {
+    position: relative;
+    width: 400px;
+    max-width: 100%;
+}
+
+.nspy-search input {
+    width: 100%;
+    background: #0f172a;
+    border: 1px solid var(--c-border);
+    padding: 10px 16px 10px 40px;
+    border-radius: 99px;
+    color: white;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+}
+
+.nspy-search input:focus {
+    outline: none;
+    border-color: var(--c-accent);
+}
+
+.nspy-search svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--c-text-muted);
+    width: 16px;
+    height: 16px;
+}
+
+.nspy-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nspy-score-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 99px;
+    font-size: 0.9rem;
+    color: var(--c-success);
+    font-weight: 600;
+}
+
+.nspy-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 10px currentColor;
+}
+
+.nspy-btn-outline {
+    background: transparent;
+    border: 1px solid var(--c-border);
+    color: var(--c-text-secondary);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.nspy-btn-outline:hover {
+    border-color: var(--c-text-muted);
+    color: white;
+}
+
+
+.nspy-content {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+
+.nspy-col-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow: hidden;
+    height: 100%;
+
+}
+
+.nspy-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.nspy-card {
+    background: var(--c-card-bg);
+    border: 1px solid var(--c-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: var(--blur);
+}
+
+.nspy-stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.nspy-stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+}
+
+.nspy-filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+
+}
+
+.nspy-pill {
+    padding: 6px 16px;
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid var(--c-border);
+    border-radius: 99px;
+    color: var(--c-text-muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.nspy-pill:hover,
+.nspy-pill.active {
+    background: white;
+    color: black;
+    border-color: white;
+    font-weight: 600;
+}
+
+
+.nspy-list {
+    flex: 1;
+    background: var(--c-card-bg);
+    border: 1px solid var(--c-border);
+    border-radius: 16px;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.nspy-row {
+    display: grid;
+    grid-template-columns: 48px 2fr 1fr 1.5fr 1fr 1fr;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border: 1px solid transparent;
+}
+
+.nspy-row:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.nspy-row.selected {
+    background: rgba(59, 130, 246, 0.05);
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
+.nspy-icon-box {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c-text-muted);
+}
+
+.nspy-cell-target {
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 1rem;
+}
+
+.nspy-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+.badge-crit {
+    background: rgba(244, 63, 94, 0.1);
+    color: var(--c-danger);
+}
+
+.badge-high {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--c-warning);
+}
+
+.badge-mid {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--c-accent);
+}
+
+.badge-low {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--c-success);
+}
+
+.badge-none {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--c-text-muted);
+}
+
+
+.nspy-col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.nspy-preview {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--c-border);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.nspy-preview-header h2 {
+    font-size: 1.25rem;
+    color: white;
+    margin-bottom: 0.5rem;
+    word-break: break-all;
+}
+
+.nspy-vuln-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.nspy-vuln-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.nspy-btn-primary {
+    width: 100%;
+    background: linear-gradient(135deg, var(--c-accent), #2563eb);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-glow);
+    transition: transform 0.2s;
+}
+
+.nspy-btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+
+.nspy-timeline {
+    padding-left: 20px;
+    border-left: 2px solid var(--c-border);
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.nspy-tl-item {
+    position: relative;
+}
+
+.nspy-tl-dot {
+    position: absolute;
+    left: -27px;
+    top: 2px;
+    width: 12px;
+    height: 12px;
+    background: var(--c-bg);
+    border: 2px solid var(--c-text-muted);
+    border-radius: 50%;
+}
+
+.nspy-tl-item.active .nspy-tl-dot {
+    border-color: var(--c-accent);
+    background: var(--c-accent);
+    box-shadow: 0 0 10px var(--c-accent);
+}
+
+
+.skeleton {
+    background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 6px;
+}
+
+.sk-text {
+    height: 1em;
+    width: 60%;
+}
+
+.sk-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+
+
+
+@media (max-width: 1024px) {
+    .nspy-sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+
+        width: 80%;
+        max-width: 300px;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .nspy-sidebar.mobile-open {
+        transform: translateX(0);
+    }
+
+    .nspy-content {
+        grid-template-columns: 1fr;
+
+        padding: 1rem;
+    }
+
+
+    .nspy-layout.mobile-view-detail .nspy-col-left {
+        display: none;
+    }
+
+    .nspy-layout.mobile-view-detail .nspy-col-right {
+        display: flex;
+    }
+
+    .nspy-col-right {
+        display: none;
+
+    }
+
+    .nspy-header-mobile-toggle {
+        display: block;
+
+    }
+
+    .nspy-search {
+        width: 100%;
+
+    }
+
+    .nspy-header {
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+
+    .nspy-header-actions {
+        gap: 0.5rem;
+    }
+
+    .nspy-header-actions span {
+        font-size: 0.8rem;
+    }
+
+
+    .nspy-row {
+        grid-template-columns: 40px 1fr auto;
+        gap: 10px;
+    }
+
+
+    .nspy-row>div:nth-child(3),
+
+    .nspy-row>div:nth-child(4),
+
+    .nspy-row>div:nth-child(6) {
+        display: none;
+    }
+
+    .nspy-cell-target {
+        font-size: 0.95rem;
+    }
+}
+
+
+@media (max-width: 640px) {
+    .nspy-stats {
+        grid-template-columns: 1fr;
+
+    }
+
+    .nspy-search input {
+        width: 150px;
+
+        transition: width 0.3s;
+    }
+
+    .nspy-search input:focus {
+        width: 200px;
+    }
+
+    .nspy-score-pill span:last-child {
+        display: none;
+
+    }
+
+    .nspy-score-pill .nspy-dot {
+        margin: 0;
+    }
+}

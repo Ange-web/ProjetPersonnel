@@ -1,0 +1,218 @@
+.service-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #0f172a;
+  background-image: radial-gradient(at 0% 0%, hsla(192, 100%, 25%, 0.4) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(260, 100%, 20%, 0.4) 0px, transparent 50%);
+  color: #e2e8f0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+
+.scan-container {
+  flex: 1;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+
+.scan-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.title-icon {
+  width: 40px;
+  height: 40px;
+}
+
+
+.scan-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+
+.scan-input {
+  flex: 1;
+  min-width: 250px;
+  background-color: #1e293b;
+  color: #ffffff;
+  border: 1px solid #475569;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.scan-input:focus {
+  border-color: #2dd4bf;
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.2);
+}
+
+.scan-input::placeholder {
+  color: #64748b;
+}
+
+
+.scan-button {
+  background: linear-gradient(to right, #00dfc4, #007cf0);
+  color: white;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.scan-button:hover:not(:disabled) {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 223, 196, 0.3);
+}
+
+.scan-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+
+.scan-loader {
+  color: #94a3b8;
+  font-style: italic;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.scan-error {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+
+.scan-results {
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+}
+
+.scan-results h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.scan-result-item {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid #f59e0b;
+  color: #cbd5e1;
+}
+
+.scan-result-item strong {
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+
+.ai-explanation-box {
+  margin-top: 2rem;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+.ai-explanation-box h3 {
+  color: #38bdf8;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.ai-explanation-box pre {
+  white-space: pre-wrap;
+  color: #e2e8f0;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+
+@media (max-width: 640px) {
+  .scan-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .scan-form {
+    flex-direction: column;
+  }
+
+  .scan-button {
+    width: 100%;
+  }
+}
+
+.scan-severity-warning {
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+
+@media (max-width: 768px) {
+  .service-page-wrapper {
+    padding-top: 5rem;
+  }
+
+  .scan-container {
+    margin: 1rem;
+    padding: 1.5rem;
+    width: auto;
+  }
+
+  .scan-form {
+    flex-direction: column;
+  }
+
+  .scan-input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .scan-button {
+    width: 100%;
+  }
+}

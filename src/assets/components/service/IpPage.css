@@ -1,0 +1,102 @@
+.service-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #0f172a;
+  background-image: radial-gradient(at 0% 0%, hsla(192, 100%, 25%, 0.4) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(260, 100%, 20%, 0.4) 0px, transparent 50%);
+  color: #e2e8f0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+
+.ip-page {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.ip-container {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  padding: 3rem;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+
+.ip-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.title-icon {
+  width: 40px;
+  height: 40px;
+}
+
+
+.ip-address {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #00dfc4, #007cf0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 1.5rem;
+  word-break: break-all;
+  filter: drop-shadow(0 0 10px rgba(0, 223, 196, 0.3));
+}
+
+
+.ip-loading {
+  font-style: italic;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+
+.ip-error {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
+
+
+@media (max-width: 640px) {
+  .ip-page {
+    padding: 1rem;
+  }
+
+  .ip-container {
+    padding: 2rem;
+  }
+
+  .ip-title {
+    font-size: 1.75rem;
+  }
+
+  .ip-address {
+    font-size: 2rem;
+  }
+}
