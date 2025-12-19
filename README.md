@@ -63,9 +63,7 @@ src/
 ## 🚦 Scripts Disponibles
 
 - `npm run dev` : Lance le serveur de développement
-- `npm run build` : Construit l'application pour la production
-- `npm run preview` : Prévisualise la build de production
-- `npm run lint` : Vérifie le code avec ESLint
+
 
 ## 🔗 Routes Disponibles
 
