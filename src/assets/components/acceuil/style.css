@@ -956,6 +956,111 @@ body.dark-mode .service-card p {
   flex: 1;
 }
 
+/* Tech Stack Section with Infinite Scroll */
+.tech-stack-section {
+  padding: 1rem 0;
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  /* Masque le débordement pour le scroll */
+  background: linear-gradient(90deg, #020617 0%, #0f172a 50%, #020617 100%);
+  /* Dégradé bleu nuit / pétrole discret */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Gradient fade masks on sides to smooth entrance/exit (optional but nice) */
+.tech-stack-section::before,
+.tech-stack-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tech-stack-section::before {
+  left: 0;
+  background: linear-gradient(to right, #020617, transparent);
+}
+
+.tech-stack-section::after {
+  right: 0;
+  background: linear-gradient(to left, #020617, transparent);
+}
+
+.tech-stack-track {
+  display: flex;
+  gap: 3rem;
+  /* Espacement large et aéré */
+  width: max-content;
+  animation: scroll 80s linear infinite;
+  /* Animation lente et continue (slower because track is longer) */
+  padding: 0 1.5rem;
+  /* Petit padding initial */
+}
+
+/* Pause animation on hover over the entire section/track */
+.tech-stack-section:hover .tech-stack-track {
+  animation-play-state: paused;
+}
+
+.tech-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  /* Prevent shrinking */
+}
+
+.tech-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
+  filter: invert(1) brightness(100%);
+  /* Make black icons white */
+}
+
+.tech-icon-wrapper:hover .tech-icon {
+  transform: scale(1.15) translateY(-2px);
+  filter: invert(1) brightness(1.2);
+  /* Keep white and brighten on hover */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(-50%);
+    /* Start halfway (showing right half) */
+  }
+
+  100% {
+    transform: translateX(0);
+    /* Scroll to start (Left-to-Right motion) */
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .tech-stack-track {
+    gap: 2rem;
+    animation-duration: 30s;
+    /* Un peu plus rapide sur mobile si besoin, ou garder identique */
+  }
+
+  .tech-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 .footer {
   background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.05);

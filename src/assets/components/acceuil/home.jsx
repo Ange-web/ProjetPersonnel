@@ -13,7 +13,7 @@ const Home = () => (
         </p>
         <div className="hero-cta-group">
           <Link to="/signup" className="btn-primary">
-            🔍 Lancer un audit gratuit
+            Lancer un audit gratuit
           </Link>
           <Link to="/servicehome" className="btn-secondary">
             Découvrir nos solutions

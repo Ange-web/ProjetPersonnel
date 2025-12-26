@@ -3,13 +3,14 @@ import Header from '../acceuil/header';
 import adatechLogo from '../../images/adatech.png';
 import selfLearningIcon from '../../images/self-learning.png';
 import profileImage from '../../images/profile-ange.png';
+import TechStackSection from '../acceuil/TechStackSection';
 import './parcours.css';
 
 const Parcours = () => {
   return (
     <div>
       <Header />
-      
+
       <section className="about-section">
         <div className="about-content">
           <div className="profile-image">
@@ -24,7 +25,7 @@ const Parcours = () => {
               download="Curriculum_vitae_Ange_Nono.pdf"
               className="cv-download-btn"
             >
-              Télécharger mon CV 
+              Télécharger mon CV
             </a>
           </div>
           <div className="about-text">
@@ -36,12 +37,14 @@ const Parcours = () => {
               Passionné par la création d'outils utiles et la résolution de problèmes concrets, chaque projet représente pour moi une occasion de me challenger. Je souhaite intégrer, dans le cadre d'une alternance, une équipe innovante où je pourrai non seulement mettre à profit mes compétences, mais aussi apprendre des personnes avec qui je collaborerai, que ce soit aujourd'hui ou dans le futur, car je considère le développement comme un <strong>métier d'apprentissage permanent</strong>.
             </p>
             <p className="highlight-text">
-              Je suis actuellement à la recherche d'une alternance de 12 mois dès 
+              Je suis actuellement à la recherche d'une alternance de 12 mois dès
               maintenant, avec un rythme 4 jours en entreprise / 1 jour en école.
             </p>
           </div>
         </div>
       </section>
+
+      <TechStackSection />
 
       <section className="formation-experiences-section">
         <div className="container">
@@ -132,6 +135,34 @@ const Parcours = () => {
               <h3>Möbel – E-commerce de meubles</h3>
               <p>Application de vente en ligne (React + PostgreSQL) avec gestion des utilisateurs et catalogue produits.</p>
               <a href="https://moble-front.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-btn">
+                Voir le projet
+              </a>
+            </div>
+            <div className="project-card">
+              <h3>micro-blogging</h3>
+              <p>Application de micro-blogging avec Java / Spring Boot, gestion des utilisateurs et publications, rendu web simple</p>
+              <a href="https://github.com/adatechschool/micro-blogging-challengeteam" target="_blank" rel="noopener noreferrer" className="project-btn">
+                Voir le projet
+              </a>
+            </div>
+            <div className="project-card">
+              <h3>Space Dev / Dataviz</h3>
+              <p>Application web de datavisualisation en HTML, CSS, JavaScript, consommant l’API NASA APOD avec affichage dynamique.</p>
+              <a href="https://github.com/adatechschool/projet-dataviz-api-spacedevs" target="_blank" rel="noopener noreferrer" className="project-btn">
+                Voir le projet
+              </a>
+            </div>
+            <div className="project-card">
+              <h3>Mugiwara Quiz</h3>
+              <p>Quiz interactif en HTML/CSS/JavaScript : logique de quiz (navigation questions, vérification réponses, score) en JavaScript natif, interface responsive.</p>
+              <a href="https://github.com/adatechschool/projet-quiz-mugiwara" target="_blank" rel="noopener noreferrer" className="project-btn">
+                Voir le projet
+              </a>
+            </div>
+            <div className="project-card">
+              <h3>extension navigateur</h3>
+              <p>Extension de navigateur développée en JavaScript, manipulation du DOM et interactions avec l’API du navigateur.</p>
+              <a href="https://github.com/adatechschool/extension-de-navigateur-superawesomteamname" target="_blank" rel="noopener noreferrer" className="project-btn">
                 Voir le projet
               </a>
             </div>
