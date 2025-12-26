@@ -63,9 +63,7 @@ src/
 ## 🚦 Scripts Disponibles
 
 - `npm run dev` : Lance le serveur de développement
-- `npm run build` : Construit l'application pour la production
-- `npm run preview` : Prévisualise la build de production
-- `npm run lint` : Vérifie le code avec ESLint
+
 
 ## 🔗 Routes Disponibles
 
@@ -105,17 +103,8 @@ VITE_API_URL=https://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:8443
 - ✅ Interface utilisateur moderne et responsive
 - ✅ Services de sécurité intégrés
 
-## 🤝 Contribution
 
-1. Fork le projet
-2. Créer une branche pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
-3. Commit vos changements (`git commit -m 'Add some AmazingFeature'`)
-4. Push vers la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrir une Pull Request
 
-## 📄 Licence
-
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 👨‍💻 Auteur
 
