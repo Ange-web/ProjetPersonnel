@@ -90,7 +90,8 @@ cp .env.example .env
 Puis modifiez le fichier `.env` avec vos paramètres :
 
 ```env
-VITE_API_URL=https://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:8443
+VITE_API_URL=
+
 ```
 
 **Note** : Le fichier `.env` est ignoré par Git pour des raisons de sécurité. Le fichier `.env.example` contient un exemple de configuration.
