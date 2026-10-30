@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ServiceIcon from './ServiceIcons';
-const ServiceCard = ({ title, description, buttonLabel, redirectPath, iconType, isPrimary = false }) => {
+const ServiceCard = ({ title, description, buttonLabel, redirectPath, iconType }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -32,3 +32,4 @@ const ServiceCard = ({ title, description, buttonLabel, redirectPath, iconType, 
 };
 
 export default ServiceCard;
+

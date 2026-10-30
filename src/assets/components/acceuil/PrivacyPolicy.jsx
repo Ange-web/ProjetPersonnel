@@ -11,7 +11,7 @@ const PrivacyPolicy = () => {
 
                 <div className="service-card" style={{ textAlign: 'left', marginBottom: '2rem' }}>
                     <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginBottom: '2rem' }}>
-                        Dernière mise à jour : 15 décembre 2025
+                        Dernière mise à jour : 20 octobre 2026
                     </p>
 
                     <h2 style={{ color: '#f8fafc', fontSize: '1.5rem', marginBottom: '1rem', marginTop: '2rem' }}>1. Présentation</h2>
@@ -31,8 +31,8 @@ const PrivacyPolicy = () => {
                         <li>Prénom et nom</li>
                         <li>Adresse email</li>
                         <li>Nom d’utilisateur</li>
-                        <li>Mot de passe (chiffré)</li>
-                        <li>Connexion via Google (email, nom, photo de profil si autorisée)</li>
+                        <li>Empreinte du mot de passe (hachage bcrypt)</li>
+                        
                     </ul>
 
                     <h3 style={{ color: '#e2e8f0', fontSize: '1.1rem', marginBottom: '0.5rem', marginTop: '1.5rem' }}>Données techniques</h3>
@@ -40,7 +40,7 @@ const PrivacyPolicy = () => {
                         <li>Adresse IP</li>
                         <li>Historique des scans effectués</li>
                         <li>Résultats d’analyse et rapports générés</li>
-                        <li>Informations de connexion (date, heure)</li>
+                        
                     </ul>
 
                     <h2 style={{ color: '#f8fafc', fontSize: '1.5rem', marginBottom: '1rem', marginTop: '2rem' }}>3. Finalité de la collecte</h2>
@@ -48,7 +48,7 @@ const PrivacyPolicy = () => {
                     <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', color: '#94a3b8', marginBottom: '1rem' }}>
                         <li>Créer et gérer votre compte utilisateur</li>
                         <li>Fournir les fonctionnalités de scan</li>
-                        <li>Générer et stocker des rapports</li>
+                        <li>Générer à la demande des rapports à partir des résultats enregistrés</li>
                         <li>Assurer la sécurité de la plateforme</li>
                         <li>Améliorer l’expérience utilisateur</li>
                     </ul>
@@ -57,7 +57,7 @@ const PrivacyPolicy = () => {
                     <h2 style={{ color: '#f8fafc', fontSize: '1.5rem', marginBottom: '1rem', marginTop: '2rem' }}>4. Sécurité des données</h2>
                     <p>NSPY met en œuvre des mesures techniques et organisationnelles pour protéger vos données :</p>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', color: '#94a3b8', marginBottom: '1rem' }}>
-                        <li>Chiffrement des mots de passe</li>
+                        <li>Hachage des mots de passe avec bcrypt</li>
                         <li>Accès sécurisé</li>
                         <li>Limitation des accès aux données sensibles</li>
                     </ul>
@@ -66,12 +66,12 @@ const PrivacyPolicy = () => {
                     <p>Les données sont conservées :</p>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', color: '#94a3b8', marginBottom: '1rem' }}>
                         <li>Tant que le compte est actif</li>
-                        <li>Ou jusqu’à la suppression du compte par l’utilisateur</li>
+                        <li>Jusqu’à la suppression du compte par l’utilisateur. Les images sont accessibles 24 heures puis supprimées par la purge planifiée.</li>
                     </ul>
 
                     <h2 style={{ color: '#f8fafc', fontSize: '1.5rem', marginBottom: '1rem', marginTop: '2rem' }}>6. Cookies</h2>
                     <p>
-                        NSPY peut utiliser des cookies techniques strictement nécessaires au bon fonctionnement du site (authentification, session).
+                        NSPY utilise une session en cookie HttpOnly, un jeton de protection CSRF (durée : une heure) et un indicateur local pour mémoriser la fermeture du guide de bienvenue.
                     </p>
 
                     <h2 style={{ color: '#f8fafc', fontSize: '1.5rem', marginBottom: '1rem', marginTop: '2rem' }}>7. Droits de l’utilisateur</h2>

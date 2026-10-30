@@ -50,7 +50,7 @@ const AboutSection = () => {
                     <div className="bento-card card-contact">
                         <h3>Contact</h3>
                         <p>Des idées ou des questions ?</p>
-                        <a href="mailto:contact@nspy.fr" className="contact-link">Me contacter</a>
+                        <a href="mailto:nspy52261@gmail.com" className="contact-link">Me contacter</a>
                     </div>
                 </div>
             </div>

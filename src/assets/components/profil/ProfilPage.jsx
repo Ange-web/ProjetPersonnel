@@ -1,293 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../acceuil/header';
+import { request, setUser, logout } from '../../../api';
 import './profil.css';
-import ProfileIcon from './ProfileIcons';
-
-const ProfilPage = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedData, setEditedData] = useState({
-    prenom: '',
-    nom: '',
-    username: ''
-  });
-  const [saving, setSaving] = useState(false);
+export default function ProfilPage() {
+  const [user, updateUser] = useState(null), [error, setError] = useState(''), [message, setMessage] = useState('');
+  const [busy, setBusy] = useState(false), [password, setPassword] = useState(''), [nextPassword, setNextPassword] = useState('');
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const token = localStorage.getItem('token');
-
-      if (!token) {
-        navigate('/Login');
-        return;
-      }
-
-      try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/profile`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        if (response.status === 401) {
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
-          navigate('/Login');
-          return;
-        }
-
-        if (!response.ok) {
-          throw new Error('Erreur lors de la récupération des données utilisateur');
-        }
-
-        const data = await response.json();
-        const userData = data.user || data;
-
-        if (userData && userData.id) {
-          setUser(userData);
-          setEditedData({
-            prenom: userData.prenom || '',
-            nom: userData.nom || '',
-            username: userData.username || ''
-          });
-          localStorage.setItem('user', JSON.stringify(userData));
-        } else {
-          throw new Error('Données utilisateur non trouvées');
-        }
-      } catch (error) {
-        console.error('Erreur:', error);
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-          setUser(JSON.parse(storedUser));
-        } else {
-          navigate('/Login');
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUserData();
-  }, [navigate]);
-
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
-
-  const handleCancel = () => {
-    setIsEditing(false);
-    setEditedData({
-      prenom: user.prenom || '',
-      nom: user.nom || '',
-      username: user.username || ''
-    });
-  };
-
-  const handleSave = async () => {
-    setSaving(true);
+  useEffect(() => { let live = true; request('/profile').then(data => { if (live) updateUser(data.user); }).catch(e => { if (live) setError(e.message); }); return () => { live = false; }; }, []);
+  async function action(event, kind) {
+    event.preventDefault(); setBusy(true); setError(''); setMessage('');
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        navigate('/Login');
-        return;
-      }
-
-      const apiUrl = `${import.meta.env.VITE_API_URL}/user/update`;
-      const response = await fetch(apiUrl, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          prenom: editedData.prenom,
-          nom: editedData.nom,
-          username: editedData.username
-        })
-      });
-
-      let data;
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('application/json')) {
-        data = await response.json();
-      }
-
-      if (response.ok) {
-        const updatedUser = data?.user || {
-          ...user,
-          prenom: editedData.prenom,
-          nom: editedData.nom,
-          username: editedData.username
-        };
-
-        localStorage.setItem('user', JSON.stringify(updatedUser));
-        setUser(updatedUser);
-        setIsEditing(false);
-        window.dispatchEvent(new CustomEvent('userUpdated', { detail: updatedUser }));
-      } else {
-        alert(data?.error || 'Erreur lors de la mise à jour.');
-      }
-    } catch (error) {
-      console.error('Erreur:', error);
-      alert('Erreur de connexion.');
-    } finally {
-      setSaving(false);
-    }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.dispatchEvent(new CustomEvent('userUpdated', { detail: null }));
-    navigate('/');
-  };
-
-  if (loading) {
-    return (
-      <div className="profil-wrapper">
-        <Header />
-        <div className="profil-container">
-          <div className="profil-loading">Chargement...</div>
-        </div>
-      </div>
-    );
+      if (kind === 'save') {
+        const data = await request('/profile', { method: 'PUT', body: JSON.stringify({ username: user.username, nom: user.nom, prenom: user.prenom }) });
+        updateUser(data.user); setUser(data.user); setMessage('Profil enregistré.');
+      } else if (kind === 'password') {
+        await request('/profile/password', { method: 'PUT', body: JSON.stringify({ currentPassword: password, password: nextPassword }) });
+        setUser(null); navigate('/Login');
+      } else if (kind === 'delete') {
+        if (!window.confirm('Supprimer définitivement votre compte, vos analyses et vos fichiers ?')) return;
+        await request('/profile', { method: 'DELETE', body: JSON.stringify({ password }) }); setUser(null); navigate('/');
+      } else { await logout(); navigate('/Login'); }
+    } catch (e) { setError(e.message); } finally { setBusy(false); }
   }
-
-  if (!user) return null;
-
-  return (
-    <div className="profil-wrapper">
-      <Header />
-      <div className="profil-container">
-        <div className="profil-card">
-          <div className="profil-header">
-            <div className="profil-avatar">
-              <div className="profil-avatar-placeholder">
-                <ProfileIcon type="user" width={64} height={64} />
-              </div>
-            </div>
-            <div className="profil-info">
-              <h1 className="profil-name">
-                {user.prenom || ''} {user.nom || ''}
-              </h1>
-              <p className="profil-username">@{user.username}</p>
-              <div className="profil-email">
-                <ProfileIcon type="mail" width={16} height={16} />
-                {user.email}
-              </div>
-            </div>
-          </div>
-
-          <div className="profil-content">
-            <div className="profil-section">
-              <div className="profil-section-header">
-                <h2 className="profil-section-title">Informations personnelles</h2>
-                {!isEditing ? (
-                  <button
-                    className="profil-edit-btn"
-                    onClick={handleEdit}
-                  >
-                    <ProfileIcon type="edit" width={18} height={18} />
-                    Modifier
-                  </button>
-                ) : (
-                  <div className="profil-edit-actions">
-                    <button
-                      className="profil-save-btn"
-                      onClick={handleSave}
-                      disabled={saving}
-                    >
-                      <ProfileIcon type="save" width={18} height={18} />
-                      {saving ? '...' : 'Enregistrer'}
-                    </button>
-                    <button
-                      className="profil-cancel-btn"
-                      onClick={handleCancel}
-                      disabled={saving}
-                    >
-                      <ProfileIcon type="cancel" width={18} height={18} />
-                      Annuler
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              <div className="profil-details">
-                <div className="profil-detail-item">
-                  <span className="profil-detail-label">Prénom</span>
-                  {isEditing ? (
-                    <input
-                      type="text"
-                      className="profil-input"
-                      value={editedData.prenom}
-                      onChange={(e) => setEditedData({ ...editedData, prenom: e.target.value })}
-                      placeholder="Votre prénom"
-                    />
-                  ) : (
-                    <span className="profil-detail-value">{user.prenom || 'Non renseigné'}</span>
-                  )}
-                </div>
-                <div className="profil-detail-item">
-                  <span className="profil-detail-label">Nom</span>
-                  {isEditing ? (
-                    <input
-                      type="text"
-                      className="profil-input"
-                      value={editedData.nom}
-                      onChange={(e) => setEditedData({ ...editedData, nom: e.target.value })}
-                      placeholder="Votre nom"
-                    />
-                  ) : (
-                    <span className="profil-detail-value">{user.nom || 'Non renseigné'}</span>
-                  )}
-                </div>
-                <div className="profil-detail-item">
-                  <span className="profil-detail-label">Nom d'utilisateur</span>
-                  {isEditing ? (
-                    <input
-                      type="text"
-                      className="profil-input"
-                      value={editedData.username}
-                      onChange={(e) => setEditedData({ ...editedData, username: e.target.value })}
-                      placeholder="Nom d'utilisateur"
-                    />
-                  ) : (
-                    <span className="profil-detail-value">{user.username}</span>
-                  )}
-                </div>
-              </div>
-            </div>
-
-
-
-            <div className="profil-actions">
-              <button
-                className="profil-btn profil-btn-primary"
-                onClick={() => navigate('/servicehome')}
-              >
-                Accéder aux services
-              </button>
-
-
-
-              <button
-                className="profil-btn profil-btn-danger"
-                onClick={handleLogout}
-              >
-                <ProfileIcon type="logout" width={18} height={18} />
-                Se déconnecter
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default ProfilPage;
+  return <div className="profil-wrapper"><Header /><main className="profil-container"><div className="profil-card">
+    <h1>Mon profil</h1>{error && <p role="alert">{error} <a href="/Login">Se connecter</a></p>}{message && <p role="status">{message}</p>}
+    {user && <><p>{user.email}</p><form onSubmit={e => action(e, 'save')} className="profil-details">
+      {['username', 'prenom', 'nom'].map(key => <label key={key} className="profil-detail-item">{({ username: 'Nom d’utilisateur', prenom: 'Prénom', nom: 'Nom' })[key]}
+        <input className="profil-input" autoComplete={key === 'username' ? 'username' : key === 'prenom' ? 'given-name' : 'family-name'} value={user[key] || ''} required={key === 'username'} minLength={key === 'username' ? 3 : undefined} maxLength={key === 'username' ? 40 : 80} onChange={e => updateUser({ ...user, [key]: e.target.value })} /></label>)}
+      <button className="profil-btn profil-btn-primary" disabled={busy}>Enregistrer le profil</button></form>
+      <form onSubmit={e => action(e, 'password')} className="profil-details"><h2>Changer mon mot de passe</h2>
+        <label>Mot de passe actuel<input className="profil-input" type="password" autoComplete="current-password" required value={password} onChange={e => setPassword(e.target.value)} /></label>
+        <label>Nouveau mot de passe (12 caractères minimum)<input className="profil-input" type="password" autoComplete="new-password" required minLength={12} maxLength={72} value={nextPassword} onChange={e => setNextPassword(e.target.value)} /></label>
+        <button className="profil-btn profil-btn-primary" disabled={busy}>Changer le mot de passe</button></form>
+      <p>La suppression utilise le mot de passe actuel saisi ci-dessus et efface les données du compte.</p>
+      <div className="profil-actions"><button className="profil-btn profil-btn-danger" disabled={busy || !password} onClick={e => action(e, 'delete')}>Supprimer mon compte</button>
+        <button className="profil-btn profil-btn-primary" disabled={busy} onClick={e => action(e, 'logout')}>Se déconnecter</button></div></>}
+  </div></main></div>;
+}

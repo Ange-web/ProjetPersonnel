@@ -17,9 +17,8 @@ const Footer = () => {
             <span className="footer-brand">NSPY</span>
           </div>
           <p className="footer-description">
-            NSPY vous accompagne dans la protection de vos données et systèmes.
-            Nos experts en cybersécurité vous offrent des solutions personnalisées
-            pour sécuriser votre infrastructure numérique.
+            NSPY est un projet personnel pédagogique de développement web.
+            Ses outils aident à comprendre des observations techniques sur un laboratoire autorisé.
           </p>
         </div>
 
@@ -55,7 +54,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; 2024 NSPY. Tous droits réservés. Protection de vos données, notre priorité.</p>
+        <p>&copy; {new Date().getFullYear()} NSPY — Projet pédagogique.</p>
       </div>
     </footer>
   );

@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+// Le stockage local peut être indisponible (navigation privée) : le guide s'affiche alors simplement à nouveau.
+const readDone = () => { try { return localStorage.getItem('nspy_onboarding_done'); } catch { return null; } };
+const markDone = () => { try { localStorage.setItem('nspy_onboarding_done', 'true'); } catch { /* ignoré */ } };
 
 const OnboardingPopup = () => {
+    const dialogRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
     const [step, setStep] = useState(1);
     const [isClosing, setIsClosing] = useState(false);
 
     useEffect(() => {
-        const done = localStorage.getItem('nspy_onboarding_done');
+        const done = readDone();
         if (done !== 'true') {
 
             const timer = setTimeout(() => setIsVisible(true), 500);
@@ -14,10 +18,17 @@ const OnboardingPopup = () => {
         }
     }, []);
 
+    useEffect(() => {
+        if (!isVisible || !dialogRef.current) return;
+        const dialog = dialogRef.current;
+        dialog.showModal();
+        return () => dialog.close();
+    }, [isVisible]);
+
     const handleClose = () => {
         setIsClosing(true);
         setTimeout(() => {
-            localStorage.setItem('nspy_onboarding_done', 'true');
+            markDone();
             setIsVisible(false);
         }, 300);
     };
@@ -203,7 +214,7 @@ const OnboardingPopup = () => {
                 `}
             </style>
 
-            <div className={`nspy-onboarding-overlay ${isClosing ? 'closing' : ''}`}>
+            <dialog ref={dialogRef} aria-label="Bienvenue sur NSPY" onCancel={() => { markDone(); setIsVisible(false); }} className={`nspy-onboarding-overlay ${isClosing ? 'closing' : ''}`}>
                 <div className="nspy-onboarding-card">
                     <div className="nspy-step-indicator">
                         <div className={`nspy-dot ${step === 1 ? 'active' : ''}`} />
@@ -257,7 +268,7 @@ const OnboardingPopup = () => {
                                 <h2 className="nspy-title">Avant de commencer</h2>
                                 <p className="nspy-text">
                                     Prends le temps de consulter l’historique et les résultats.
-                                    Les règles légales et d’utilisation seront affichées plus tard.
+                                    Utilise uniquement les cibles autorisées du laboratoire. Les conditions d’utilisation sont accessibles dans le pied de page.
                                 </p>
                                 <div className="nspy-actions">
                                     <button className="nspy-btn nspy-btn-primary" onClick={handleClose}>
@@ -271,7 +282,7 @@ const OnboardingPopup = () => {
                         )}
                     </div>
                 </div>
-            </div>
+            </dialog>
         </>
     );
 };

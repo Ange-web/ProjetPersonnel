@@ -1,3 +1,4 @@
+import { apiFetch } from '../../../api';
 import React, { useEffect, useState } from "react";
 import Header from "../acceuil/header";
 import ScanResultView from './ScanResultView';
@@ -10,22 +11,8 @@ const IpPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const NOT_AUTH_MSG = "Merci de vous connecter ou vous reconnecter afin d’accéder à l’outil.";
-
-    if (!token) {
-      setError(NOT_AUTH_MSG);
-      setLoading(false);
-      return;
-    }
-
-    fetch(`${import.meta.env.VITE_API_URL}/scan/ip`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      },
-    })
+    const NOT_AUTH_MSG = "Connectez-vous pour consulter votre adresse IP.";
+    apiFetch('/scan/ip')
       .then((res) => {
         if (!res.ok) {
           if (res.status === 401) throw new Error(NOT_AUTH_MSG);

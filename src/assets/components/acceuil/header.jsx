@@ -1,3 +1,4 @@
+import { loadSession, logout } from '../../../api';
 import React, { useEffect, useState } from 'react';
 import './style.css';
 import logo from '../../images/logo.png';
@@ -32,27 +33,8 @@ const Header = () => {
   }, [isMenuOpen]);
 
   useEffect(() => {
-    const loadUser = () => {
-      const storedUser = localStorage.getItem("user");
-
-      if (storedUser && storedUser !== "undefined") {
-        try {
-          const parsed = JSON.parse(storedUser);
-          setUser(parsed);
-        } catch (err) {
-          console.error("Erreur JSON.parse sur user:", err);
-          localStorage.removeItem("user");
-        }
-      }
-    };
-
-    loadUser();
-
-    const handleUserUpdate = (event) => {
-      if (event.detail) {
-        setUser(event.detail);
-      }
-    };
+    loadSession().then(setUser).catch(() => setUser(null));
+    const handleUserUpdate = event => setUser(event.detail || null);
 
     window.addEventListener('userUpdated', handleUserUpdate);
 
@@ -81,17 +63,9 @@ const Header = () => {
   }, [lastScrollY]);
 
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setUser(null);
-    setShowPopup(false);
-    navigate('/Login');
-  };
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle('dark-mode');
+  const handleLogout = async () => {
+    try { await logout(); setShowPopup(false); navigate('/Login'); }
+    catch (error) { alert(error.message); }
   };
 
   const toggleFullWidth = () => {
@@ -109,7 +83,7 @@ const Header = () => {
           <button
             className="mobile-menu-toggle"
             onClick={toggleMenu}
-            aria-label="Toggle menu"
+            aria-label="Ouvrir ou fermer le menu" aria-expanded={isMenuOpen}
           >
             <span className={`hamburger ${isMenuOpen ? 'active' : ''}`}></span>
           </button>
@@ -119,7 +93,7 @@ const Header = () => {
           <nav className="nav">
             <Link to="/" onClick={closeMenu}>Accueil</Link>
             <Link to="/servicehome" onClick={closeMenu}>Services</Link>
-            <a href="#" onClick={closeMenu}>Contact</a>
+            <a href="mailto:nspy52261@gmail.com" onClick={closeMenu}>Contact</a>
             <Link to="/parcours" onClick={closeMenu}>Mon Parcours</Link>
           </nav>
 
@@ -137,6 +111,8 @@ const Header = () => {
                 className="user-info"
                 onMouseEnter={() => setShowPopup(true)}
                 onMouseLeave={() => setShowPopup(false)}
+                role="button" tabIndex={0} aria-expanded={showPopup}
+                onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setShowPopup(!showPopup); } if (e.key === "Escape") setShowPopup(false); }}
                 onClick={() => setShowPopup(!showPopup)}
               >
                 <span className="username">{user.username}</span>
@@ -167,9 +143,7 @@ const Header = () => {
                 )}
               </div>
             ) : (
-              <Link to="/login" onClick={closeMenu}>
-                <button className="btn-primary">Connexion</button>
-              </Link>
+              <Link to="/login" onClick={closeMenu} className="btn-primary">Connexion</Link>
             )}
           </div>
         </div>

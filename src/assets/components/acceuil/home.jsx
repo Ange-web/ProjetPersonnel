@@ -7,16 +7,16 @@ const Home = () => (
   <section className="home">
     <div className="home-content">
       <div className="home-text">
-        <h1>Identifiez vos failles de sécurité avant qu’un attaquant ne le fasse.</h1>
+        <h1>Comprenez les observations de votre laboratoire de sécurité.</h1>
         <p>
-          NSPY analyse vos services exposés, détecte les risques critiques et vous explique comment les corriger, sans jargon technique.
+          NSPY rassemble des outils d’analyse pédagogique : URL autorisées, ports TCP et métadonnées, avec un historique personnel.
         </p>
         <div className="hero-cta-group">
           <Link to="/signup" className="btn-primary">
-            Lancer un audit gratuit
+            Créer mon espace
           </Link>
           <Link to="/servicehome" className="btn-secondary">
-            Découvrir nos solutions
+            Découvrir les outils
           </Link>
         </div>
         <div className="hero-trust-indicators">
@@ -24,10 +24,10 @@ const Home = () => (
             <span>✔️</span> Sans installation
           </div>
           <div className="trust-item">
-            <span>✔️</span> Résultats en quelques minutes
+            <span>✔️</span> Cibles de laboratoire
           </div>
           <div className="trust-item">
-            <span>✔️</span> Données hébergées en Europe
+            <span>✔️</span> Historique personnel
           </div>
         </div>
       </div>

@@ -18,7 +18,7 @@ const HowItWorks = () => {
                             </svg>
                         </div>
                         <h3>Vous entrez une URL / IP</h3>
-                        <p>Saisissez simplement la cible que vous souhaitez analyser.</p>
+                        <p>Choisissez une cible de laboratoire autorisée.</p>
                     </div>
 
                     <div className="step-arrow">
@@ -60,7 +60,7 @@ const HowItWorks = () => {
                             </svg>
                         </div>
                         <h3>Rapport clair avec priorités</h3>
-                        <p>Recevez un audit détaillé et des conseils de correction.</p>
+                        <p>Consultez les observations et téléchargez votre rapport.</p>
                     </div>
                 </div>
             </div>

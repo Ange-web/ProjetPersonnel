@@ -1,15 +1,6 @@
 import React from 'react';
 
 const ProfileIcon = ({ type, className = "", width = 20, height = 20, strokeWidth = 2 }) => {
-    const gradientDef = (
-        <defs>
-            <linearGradient id="profileGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00dfc4" />
-                <stop offset="100%" stopColor="#007cf0" />
-            </linearGradient>
-        </defs>
-    );
-
     const commonProps = {
         width,
         height,
@@ -74,3 +65,4 @@ const ProfileIcon = ({ type, className = "", width = 20, height = 20, strokeWidt
 };
 
 export default ProfileIcon;
+
