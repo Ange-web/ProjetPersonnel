@@ -6,7 +6,7 @@ const ScanResultView = ({ result }) => {
 
     const { scan, stats, findings, ipData, metadata } = result;
     const scanInfo = scan || {};
-    const severity = scanInfo.severity || 'low';
+    const severity = scanInfo.severity || 'info';
     const status = scanInfo.status || 'completed';
 
 
@@ -35,7 +35,7 @@ const ScanResultView = ({ result }) => {
                                 severity === 'medium' ? 'Moyen' :
                                     severity === 'low' ? 'Faible' : 'Info'}
                     </span>
-                    {scanInfo.duration_ms && <span>{scanInfo.duration_ms}ms</span>}
+                    {scanInfo.duration_ms > 0 && <span>{scanInfo.duration_ms}ms</span>}
                     {scanInfo.started_at && <span>{formatDate(scanInfo.started_at)}</span>}
                 </div>
             </div>
@@ -99,7 +99,7 @@ const ScanResultView = ({ result }) => {
 
             {findings && findings.length > 0 && (
                 <div className="srv-findings">
-                    <h4 style={{ marginBottom: '10px', marginTop: '20px' }}>Vulnérabilités Détectées</h4>
+                    <h4 style={{ marginBottom: '10px', marginTop: '20px' }}>Observations de l’outil</h4>
                     {findings.map((finding, idx) => (
                         <FindingCard key={idx} finding={finding} />
                     ))}
@@ -108,7 +108,7 @@ const ScanResultView = ({ result }) => {
 
             {(!findings || findings.length === 0) && status === 'success' && !ipData && (!metadata || Object.keys(metadata).length === 0) && (
                 <div style={{ textAlign: 'center', padding: '2rem', color: '#64748b' }}>
-                    Aucune vulnérabilité ou donnée particulière détectée.
+                    Aucune observation enregistrée. Ce résultat ne garantit pas l’absence de vulnérabilités.
                 </div>
             )}
         </div>
@@ -121,7 +121,7 @@ const FindingCard = ({ finding }) => {
 
     return (
         <div className="srv-finding-card">
-            <div className="srv-finding-header" onClick={() => setExpanded(!expanded)}>
+            <div className="srv-finding-header" role="button" tabIndex={0} aria-expanded={expanded} onKeyDown={e => { if (["Enter", " "].includes(e.key)) { e.preventDefault(); setExpanded(!expanded); } }} onClick={() => setExpanded(!expanded)}>
                 <div className="srv-finding-title-group">
                     <span className={`srv-badge severity-${severity}`} style={{ fontSize: '0.65rem' }}>
                         {severity.toUpperCase()}

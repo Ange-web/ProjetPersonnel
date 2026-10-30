@@ -7,35 +7,31 @@ const Serviceoption = () => {
     <div className="card-row">
       <ServiceCard
         title="Scan URL"
-        description="Détection des Failles Critiques. Analyse automatique de votre URL pour les injections SQL et les failles XSS. Le Bouclier de votre Site en un Clic."
+        description="Analyse Nuclei limitée aux URL autorisées du laboratoire. Les observations doivent être vérifiées et ne certifient pas la sécurité du site."
         buttonLabel="Analyser une URL"
         redirectPath="/scanurl"
         iconType="url"
-        isPrimary={true}
       />
       <ServiceCard
         title="Scan de Ports"
-        description="Audit Réseau Rapide. Identifie les ports ouverts sur votre machine pour sécuriser vos services accessibles à l'extérieur. Détecte les failles potentielles."
+        description="Observe les ports TCP accessibles sur une IP de laboratoire depuis le serveur NSPY. Un port ouvert ne prouve pas une faille."
         buttonLabel="Scanner mes ports"
         redirectPath="/scanport"
         iconType="port"
-        isPrimary={false}
       />
       <ServiceCard
         title="Votre Adresse IP Publique"
-        description="Connaissance de votre Identité Réseau. Affiche votre IP publique. Intègre les tests de connectivité et la vérification de votre identité réseau."
+        description="Affiche l’adresse IP observée par le serveur NSPY. Aucun test de connectivité ni diagnostic de sécurité n’est réalisé."
         buttonLabel="Voir mon IP"
         redirectPath="/scanip"
         iconType="ip"
-        isPrimary={false}
       />
       <ServiceCard
         title="Scan des Métadonnées Image"
-        description="Analyse Forensique Légère. Affiche les métadonnées cachées (EXIF) des images pour identifier l'appareil, la localisation et la date de capture."
+        description="Lit, modifie certains champs et retire les métadonnées d’une image JPEG ou PNG. Fichiers privés, 5 Mo maximum, disponibles 24 heures."
         buttonLabel="Scan Image"
         redirectPath="/scanexif"
         iconType="exif"
-        isPrimary={false}
       />
 
     </div>

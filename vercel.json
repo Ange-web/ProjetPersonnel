@@ -1,11 +1,12 @@
 {
   "rewrites": [
     {
+      "source": "/api/:path*",
+      "destination": "https://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:8443/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "env": {
-    "VITE_API_URL": "https://ec2-16-171-143-46.eu-north-1.compute.amazonaws.com:8443"
-  }
+  ]
 }

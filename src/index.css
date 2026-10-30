@@ -61,3 +61,17 @@ button {
     font-size: 13px;
   }
 }
+/* Keyboard focus must remain visible across the existing visual theme. */
+:focus-visible { outline: 3px solid #22d3ee !important; outline-offset: 4px; }
+input, select, textarea { max-width: 100%; }
+.scan-form { flex-wrap: wrap; }
+.scan-form label { flex-basis: 100%; }
+.scan-error, [role="alert"] { color: #fda4af; }
+.profil-details label { display: grid; gap: .5rem; }
+.profil-details { margin-block: 1.5rem; }
+.nspy-content > * { min-width: 0; }
+.nspy-row { border: 1px solid #334155; cursor: pointer; }
+.srv-finding-header[role="button"] { cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+@media(max-width: 700px) { .nspy-content { display: flex; flex-direction: column; } .nspy-header { flex-wrap: wrap; gap: 1rem; } .nspy-row { display: flex; flex-wrap: wrap; } .scan-container { padding-inline: 1rem; } }
+.home .home-text p { color: #cbd5e1; } .service-card h5 { font-size: 1.25rem; }

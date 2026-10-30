@@ -11,7 +11,7 @@ const TermsOfUse = () => {
 
                 <div className="service-card" style={{ textAlign: 'left', marginBottom: '2rem' }}>
                     <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginBottom: '2rem' }}>
-                        Dernière mise à jour : 15 décembre 2025
+                        Dernière mise à jour : 20 octobre 2026
                     </p>
 
                     <h2 style={{ color: '#f8fafc', fontSize: '1.5rem', marginBottom: '1rem', marginTop: '2rem' }}>1. Objet</h2>
@@ -23,7 +23,7 @@ const TermsOfUse = () => {
                     <p>L’accès aux outils NSPY nécessite :</p>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', color: '#94a3b8', marginBottom: '1rem' }}>
                         <li>La création d’un compte utilisateur</li>
-                        <li>Ou une connexion via un fournisseur tiers (Google)</li>
+                        
                     </ul>
                     <p>
                         L’utilisateur est responsable de la confidentialité de ses identifiants.

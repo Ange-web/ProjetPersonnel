@@ -5,21 +5,21 @@ import './style.css';
 const ServicesSection = () => (
   <section className="services">
     <ServiceCard
-      iconType="ip"
-      title="Évaluation de configuration"
-      description="Je teste les paramètres réseau comme les adresses IP et les serveurs DNS de manière simple pour détecter d’éventuelles erreurs ou incohérences dans votre système."
+      iconType="ip" redirectPath="/scanip"
+      title="Votre adresse IP"
+      description="Affichez l’adresse IP observée par le serveur. Cet outil ne vérifie pas votre configuration DNS."
       buttonLabel="En savoir plus"
     />
     <ServiceCard
-      iconType="url"
-      title="État de la sécurité"
-      description="Je vérifie de manière claire et rapide si les mesures de protection (pare-feu, double authentification…) sont bien en place et efficaces."
+      iconType="url" redirectPath="/scanurl"
+      title="Analyse d’une URL autorisée"
+      description="Lancez Nuclei sur une cible du laboratoire autorisé. Les observations nécessitent une vérification humaine."
       buttonLabel="En savoir plus"
     />
     <ServiceCard
-      iconType="port"
+      iconType="port" redirectPath="/scanport"
       title="Scan des ports ouverts"
-      description="Je teste les outils pour détecter les services visibles sur Internet et vérifier s’ils présentent des risques potentiels, sans jargon technique."
+      description="Observez les ports TCP accessibles d’une IP autorisée. Un port ouvert ne constitue pas à lui seul une vulnérabilité."
       buttonLabel="En savoir plus"
     />
   </section>
