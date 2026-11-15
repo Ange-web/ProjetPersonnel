@@ -115,7 +115,7 @@ const Parcours = () => {
             <div className="project-card">
               <h3>NSPY – Plateforme de cybersécurité</h3>
               <p>Interface web (React + Node/Express) centralisant des outils comme Nmap, Nuclei, ExifTool, etc.</p>
-              <a href="https://projet-personnel-rust.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-btn">
+              <a href="https://app.workflowange.site/" target="_blank" rel="noopener noreferrer" className="project-btn">
                 Voir le projet
               </a>
             </div>

@@ -37,7 +37,7 @@ const LegalMentions = () => {
                     <h2 style={{ color: '#f8fafc', fontSize: '1.5rem', marginBottom: '1rem', marginTop: '2rem' }}>3. Accès au site</h2>
                     <p>
                         Le site NSPY est accessible à l’adresse suivante :<br />
-                        👉 <a href="https://projet-personnel-rust.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ color: '#20B2AA' }}>https://projet-personnel-rust.vercel.app/</a>
+                        👉 <a href="https://app.workflowange.site/" target="_blank" rel="noopener noreferrer" style={{ color: '#20B2AA' }}>https://app.workflowange.site/</a>
                     </p>
                     <p>L’accès à certaines fonctionnalités (outils de scan, tableau de bord, génération de rapports) nécessite :</p>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', color: '#94a3b8', marginBottom: '1rem' }}>
